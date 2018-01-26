@@ -1,0 +1,883 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.1" />
+
+
+
+
+
+
+<meta name="description" content="现在开始，我们要加快进度，快马加鞭制作我们的云盘。我们现在先别管会员制，我们先假设制作一个人用的云盘，假设我们进入主页就是已经登录好的云盘界面，我们思考一下，这个页面需要哪些东西。因为是一个云盘，所以，我们肯定需要一个列表，上面列着我们存在云盘上的文件，然后点击他们可以下载，然后每个文件右边有个删除按钮用来删除文件，主页还有一个上传按钮用来上传文件，基本上只要把上面的功能实现了，那我们的云盘差不多">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Django新手教程10，私人云盘">
+<meta property="og:url" content="http://zju.xyz/2017/06/12/django-tutorial10/index.html">
+<meta property="og:site_name" content="myCabine">
+<meta property="og:description" content="现在开始，我们要加快进度，快马加鞭制作我们的云盘。我们现在先别管会员制，我们先假设制作一个人用的云盘，假设我们进入主页就是已经登录好的云盘界面，我们思考一下，这个页面需要哪些东西。因为是一个云盘，所以，我们肯定需要一个列表，上面列着我们存在云盘上的文件，然后点击他们可以下载，然后每个文件右边有个删除按钮用来删除文件，主页还有一个上传按钮用来上传文件，基本上只要把上面的功能实现了，那我们的云盘差不多">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://zju.xyz/2017/06/12/django-tutorial10/10.1.png">
+<meta property="og:image" content="http://zju.xyz/2017/06/12/django-tutorial10/10.2.png">
+<meta property="og:updated_time" content="2017-07-05T21:28:03.709Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Django新手教程10，私人云盘">
+<meta name="twitter:description" content="现在开始，我们要加快进度，快马加鞭制作我们的云盘。我们现在先别管会员制，我们先假设制作一个人用的云盘，假设我们进入主页就是已经登录好的云盘界面，我们思考一下，这个页面需要哪些东西。因为是一个云盘，所以，我们肯定需要一个列表，上面列着我们存在云盘上的文件，然后点击他们可以下载，然后每个文件右边有个删除按钮用来删除文件，主页还有一个上传按钮用来上传文件，基本上只要把上面的功能实现了，那我们的云盘差不多">
+<meta name="twitter:image" content="http://zju.xyz/2017/06/12/django-tutorial10/10.1.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://zju.xyz/2017/06/12/django-tutorial10/"/>
+
+
+
+
+
+  <title>Django新手教程10，私人云盘 | myCabine</title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">myCabine</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">A blog record my mind.</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://zju.xyz/2017/06/12/django-tutorial10/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Lieren">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/logo.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="myCabine">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Django新手教程10，私人云盘</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-06-12T05:48:07+08:00">
+                2017-06-11
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/django-tutorial/" itemprop="url" rel="index">
+                    <span itemprop="name">django_tutorial</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+             <span id="/2017/06/12/django-tutorial10/" class="leancloud_visitors" data-flag-title="Django新手教程10，私人云盘">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数 </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计</span>
+                
+                <span title="字数统计">
+                  
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长</span>
+                
+                <span title="阅读时长">
+                  
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>现在开始，我们要加快进度，快马加鞭制作我们的云盘。<br>我们现在先别管会员制，我们先假设制作一个人用的云盘，假设我们进入主页就是已经登录好的云盘界面，我们思考一下，这个页面需要哪些东西。<br>因为是一个云盘，所以，我们肯定需要一个列表，上面列着我们存在云盘上的文件，然后点击他们可以下载，然后每个文件右边有个删除按钮用来删除文件，主页还有一个上传按钮用来上传文件，基本上只要把上面的功能实现了，那我们的云盘差不多就完成了。可以的话，我们希望最好文件右边还有一栏显示文件上传的日期。<br>这时你可能开始慌了，隐约觉得我们开始需要涉及数据库方面的东西了，没错，因为这涉及到存放文件数据了，我们想想，云盘需要什么样的数据结构？<br>云盘需要的数据最最最主要是两个，第一，这个文件的名字，第二，这个文件的路径。实际上也只有一个，那就是路径，比如我们之前的logo.png文件，路径是myCloud/static/logo.png，有这个路径也就可以知道文件名了。当然，我们还可以附加一个数据，那就是上传时间（这是可有可无的，我们的云盘高端点就加上，不加也没关系）<br>也就是说，我们需要把每次把一种叫文件的数据存进数据库顺便存一下它存入数据库的时间日期，这样一来，我们每次进入主页，我们就可以根据数据库里面文件数据的文件名属性信息找出来列到我们主页的列表里，然后文件的路径做成链接可以是我们点击文件名的时候链接到这个文件的路径进行下载。<br>对于新手来说，这时候可能就两眼懵逼了，什么数据库，怎么使用数据库，这个名词天天听到，可是到底是一个什么 东西的存在？数据库其实大家或多或少都会有概念的，网络服务的数据库也跟我们平时用来处理数据的东西差不多，比如excel。大家觉得难的其实是他的接口，简单地说就是不知道怎么用数据库，平时我们使用excel，鼠标点击就打开，键盘输入数据，然后点击保存，关闭退出。而使用网络数据库，这些基本都要靠代码来完成，怎么往里面写数据，怎么从里面取出数据，其实也不难学,无非是一些命令罢了，得花一定时间。<br>如果，你在学习传统的网页制作方式，可能到这里，很多人就知难而退了，我一个业余爱好者做一个网页玩玩，你居然想让我学习数据库这么专业的东西？太浪费时间了！莫慌！django就是这样一个拯救你的宝贵时间的存在，django直接把数据库封装了，使用了一个叫ORM映射的东西，把数据库里面的数据映射成了一个个的对象。直接讲ORM可能得费老半天的时间，我们就在实践中学习吧。<br>由于我们的云盘肯定是要储存数据的，我们首先要选择一个数据库，django支持的数据库不少，为了方便起见，我们就使用sqlite3吧，方便到什么程度呢，因为python3已经内置了sqlite3，所以我们什么都不用做就可以拿来用。<br>django要求我们把需要使用到的数据做成模型，然后它再根据这些模型跟数据库打交道，所以，我们只要制作模型就可以了，那什么是模型呢，我们打开myCloud目录下的models.py文件，把我们的文件数据模型放进去。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> django.db <span class="keyword">import</span> models</span><br><span class="line"></span><br><span class="line"><span class="comment"># Create your models here.</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">fileModel</span><span class="params">(models.Model)</span>:</span></span><br><span class="line">    myfile = models.FileField(upload_to=<span class="string">'upload'</span>)</span><br><span class="line">    upload_date = models.DateField(auto_now_add=<span class="keyword">True</span>)</span><br></pre></td></tr></table></figure>
+<p>以上就是数据模型了。<br>怎么去理解上面的代码呢，我们看到，我们新建了一个class，这个类名是<br>fileModel这也就是我们需要的数据表格的名字，我们创建的这个类就相当于告诉django，你给我在数据库里新建一个叫fileModel的Excel表格。<br>然后这个表格就只有三栏，其中一栏是默认的，不需要我们手动增加，数据库会对每一行新加入的数据进行编号，俗称id号（实际上Excel每一行也都有标号，你可以把这一栏看作是默认栏目），每次有新数据进来就会自动编号。而另两栏，就是我们写的两行代码。<br>第一行是myfile 表示这一栏（或者说这一列）里面存的是一种叫文件的数据类型，根据这个数据类型，我们能够直接得到文件名和文件所在的路径，excel只能存字符串，或者说你只能往里面打字，但是django的一小格我们能里面填文件。<br>第二行uplaod_date表示这一栏存的是一种叫日期的数据类型，我们把auto_now_add设置为True表示说这里记录文件上传时的日期。<br>django是不是很人性化，啥都给你弄得妥妥的！<br>数据模型就是这么简单，其实是我们给数据库创建表格做了一个模板，数据库会创建这么一个类似excel的表单</p>
+<img src="/2017/06/12/django-tutorial10/10.1.png">
+<p>之后，我们往里面填数据的时候就会变成这样：</p>
+<img src="/2017/06/12/django-tutorial10/10.2.png">
+<p>我们可以从中取出文件1，然后获得该文件的路径和文件名，比如‘huluwa.avi’和他所在的路径，比如’myCloud/upload/huluwa.avi’</p>
+<p>而我们看到之前的函数，里面有一条叫‘upload_to’的参数，他就是要我们指明文件的上传路径。因为，数据库不会真的把这个文件都放进去，记录的是文件的信息，而真正的文件则传到上传路径里面。（不过，我们可以假装文件真的是放进数据库里面的一个个小格子里面去了）<br>设计好数据模型后，我们需要运行<br>python manage.py makemigrations<br>python mange.py migrate<br>做好数据库的启动，这时数据库会根据模型创建好上面提到的表单，这时表单当然是空的，我们需要制作上传的功能，也就是把数据存进数据库。</p>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+  <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+    <div>坚持原创技术分享，您的支持将鼓励我继续创作！</div>
+    <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+      <span>赏</span>
+    </button>
+    <div id="QR" style="display: none;">
+      
+      
+        <div id="alipay" style="display: inline-block">
+          <img id="alipay_qr" src="/images/myAlipay.png" alt="Lieren Alipay"/>
+          <p>支付宝打赏</p>
+        </div>
+      
+    </div>
+  </div>
+
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/06/12/django-tutorial9/" rel="next" title="Django新手教程9，美化页面">
+                <i class="fa fa-chevron-left"></i> Django新手教程9，美化页面
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/06/12/django-tutorial11/" rel="prev" title="Django新手教程11，上传文件与制作表单">
+                Django新手教程11，上传文件与制作表单 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div id="uyan_frame"></div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+
+      <section class="site-overview sidebar-panel sidebar-panel-active">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/logo.png"
+               alt="Lieren" />
+          <p class="site-author-name" itemprop="name">Lieren</p>
+           
+              <p class="site-description motion-element" itemprop="description"></p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives/">
+                <span class="site-state-item-count">30</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              <a href="/categories/index.html">
+                <span class="site-state-item-count">4</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Lieren</span>
+</div>
+
+
+
+<div class="powered-by">
+<i class="fa fa-user-md"></i><span id="busuanzi_container_site_uv">
+  访客数:<span id="busuanzi_value_site_uv"></span>
+</span>
+</div>
+
+<div class="theme-info">
+  <span class="post-count">全站共字</span>
+</div>
+<br/>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.1"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+    
+
+    
+      <!-- UY BEGIN -->
+      <script type="text/javascript" src="http://v2.uyan.cc/code/uyan.js?uid=2139086"></script>
+      <!-- UY END -->
+    
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.1.js"></script>
+  <script>AV.initialize("2nhVd4XLQfttbvmFClpr9JGr-gzGzoHsz", "Vdp3tKCpuqMGjHuvwk4bgI8u");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

@@ -1,0 +1,901 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.1" />
+
+
+
+
+
+
+<meta name="description" content="既然到这一步了，我们就需要在主页的html文件里面添加相应的上传功能。要想实现上传功能，我们就要在html文件制作一个‘表单’。为什么要做表单呢，我们在这里照顾一下对HTML没有概念的同学。比如，我们需要客户做一个调查，拿个最简单的例子，我们打算做一个名为question.html的网页来收集客户的性别情况，自然而然地我们就应该在页面上有这样的内容： 12&amp;lt;input type=&quot;text&quot;">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Django新手教程11，上传文件与制作表单">
+<meta property="og:url" content="http://zju.xyz/2017/06/12/django-tutorial11/index.html">
+<meta property="og:site_name" content="myCabine">
+<meta property="og:description" content="既然到这一步了，我们就需要在主页的html文件里面添加相应的上传功能。要想实现上传功能，我们就要在html文件制作一个‘表单’。为什么要做表单呢，我们在这里照顾一下对HTML没有概念的同学。比如，我们需要客户做一个调查，拿个最简单的例子，我们打算做一个名为question.html的网页来收集客户的性别情况，自然而然地我们就应该在页面上有这样的内容： 12&amp;lt;input type=&quot;text&quot;">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://zju.xyz/2017/06/12/django-tutorial11/11.1.png">
+<meta property="og:image" content="http://zju.xyz/2017/06/12/django-tutorial11/11.2.png">
+<meta property="og:image" content="http://zju.xyz/2017/06/12/django-tutorial11/11.3.png">
+<meta property="og:updated_time" content="2017-07-05T21:41:27.614Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Django新手教程11，上传文件与制作表单">
+<meta name="twitter:description" content="既然到这一步了，我们就需要在主页的html文件里面添加相应的上传功能。要想实现上传功能，我们就要在html文件制作一个‘表单’。为什么要做表单呢，我们在这里照顾一下对HTML没有概念的同学。比如，我们需要客户做一个调查，拿个最简单的例子，我们打算做一个名为question.html的网页来收集客户的性别情况，自然而然地我们就应该在页面上有这样的内容： 12&amp;lt;input type=&quot;text&quot;">
+<meta name="twitter:image" content="http://zju.xyz/2017/06/12/django-tutorial11/11.1.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://zju.xyz/2017/06/12/django-tutorial11/"/>
+
+
+
+
+
+  <title>Django新手教程11，上传文件与制作表单 | myCabine</title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">myCabine</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">A blog record my mind.</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://zju.xyz/2017/06/12/django-tutorial11/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Lieren">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/logo.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="myCabine">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Django新手教程11，上传文件与制作表单</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-06-12T05:48:36+08:00">
+                2017-06-11
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/django-tutorial/" itemprop="url" rel="index">
+                    <span itemprop="name">django_tutorial</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+             <span id="/2017/06/12/django-tutorial11/" class="leancloud_visitors" data-flag-title="Django新手教程11，上传文件与制作表单">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数 </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计</span>
+                
+                <span title="字数统计">
+                  
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长</span>
+                
+                <span title="阅读时长">
+                  
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>既然到这一步了，我们就需要在主页的html文件里面添加相应的上传功能。要想实现上传功能，我们就要在html文件制作一个‘表单’。<br>为什么要做表单呢，我们在这里照顾一下对HTML没有概念的同学。<br>比如，我们需要客户做一个调查，拿个最简单的例子，我们打算做一个名为question.html<br>的网页来收集客户的性别情况，自然而然地我们就应该在页面上有这样的内容：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"text"</span>  <span class="attr">name</span>=<span class="string">"your gender"</span>/&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"submit"</span> <span class="attr">name</span>=<span class="string">""</span> <span class="attr">value</span>=<span class="string">"提交"</span> /&gt;</span></span><br></pre></td></tr></table></figure>
+<p>首先我们需要有一个输入框给客户填入性别，就是这个<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;input type=&quot;text&quot;  name=&quot;your gender&quot;/&gt;</span><br></pre></td></tr></table></figure></p>
+<p>然后我们需要只一个按钮，也就是<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;input type=&quot;submit&quot; name=&quot;&quot; value=&quot;提交&quot; /&gt;</span><br></pre></td></tr></table></figure></p>
+<p>（类型是submit就说明这是一个按钮）<br>这两个东西组合起来就算是HTML文件里面最简单的表单，按照HTML的规则，在HTML中应该用一对<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&lt;form&gt;</span><br><span class="line">&lt;/form&gt;</span><br></pre></td></tr></table></figure></p>
+<p>标签把他们圈起来，正确应该是这样<br><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">form</span> <span class="attr">action</span>=<span class="string">"result.html"</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"text"</span> <span class="attr">name</span>=<span class="string">"the_gender"</span> <span class="attr">value</span>=<span class="string">"input your gender"</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"submit"</span> <span class="attr">name</span>=<span class="string">""</span> <span class="attr">value</span>=<span class="string">"OK"</span> /&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">form</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
+<p>其中第一行的<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&lt;form action=&quot;result.html&quot;&gt;</span><br><span class="line">`</span><br></pre></td></tr></table></figure></p>
+<p>表示，客户填完性别，点击按钮的时候，就会把里面的有用的信息比如客户的性别信息放到request里面一起提交到result.html<br>因此，相关的网络架构，不管是php，还是django都需要通过分析这些request信息来对客户进行回馈。<br>比如在我们的django开发的时候，我们就需要负责result.html的讲解员来分析信息。而这些信息在哪里呢？就在request里面。<br>所以，我们需要的result讲解员应该是这样<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">result_jiangjieyuan</span><span class="params">(request)</span>:</span></span><br><span class="line">    visitor_gender= request[<span class="string">'the_gender'</span>]</span><br><span class="line">    <span class="keyword">if</span> visitor_gender == <span class="string">"男"</span>：</span><br><span class="line">        <span class="keyword">return</span> HttpResponse(<span class="string">"Hello ,你的性别是男,因此,你很有可能喜欢看葫芦娃"</span>)</span><br><span class="line">    <span class="keyword">elif</span> visitor_gender==<span class="string">"女"</span></span><br><span class="line">        <span class="keyword">return</span> HttpResponse(<span class="string">"Hello ,你的性别是女，因此，你很有可能喜欢逛淘宝"</span> )</span><br></pre></td></tr></table></figure></p>
+<p>我们网页的请求有两种，我们一般到一个网页，使用的是一种叫GET 的方法，也就是说，我们打开浏览器，输入地址，那么浏览器就会发出一个request，这个request的方法是GET。这种方法有个不好的地方是，能传输客户的信息量比较少，而且不太安全，信息会显示在URL栏里面，所以，我们在传输表单数据的时候必须得使用POST方法。而且，用这个方法也可以区分客户是不是提交了表单而来的。<br>所以我们把question.html里面的表单修改一下，指明提交表单时使用的提交方法<br><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">form</span> <span class="attr">action</span>=<span class="string">"result.html"</span> <span class="attr">method</span>=<span class="string">'POST'</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"text"</span> <span class="attr">name</span>=<span class="string">"the_name"</span> <span class="attr">value</span>=<span class="string">"input yourname"</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"text"</span> <span class="attr">name</span>=<span class="string">"the_gender"</span> <span class="attr">value</span>=<span class="string">"input your gender"</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"submit"</span> <span class="attr">name</span>=<span class="string">""</span> <span class="attr">value</span>=<span class="string">"OK"</span> /&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">form</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
+<p>负责result.html的讲解员应该是这样的：<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">result_jiangjieyuan</span><span class="params">(request)</span>:</span></span><br><span class="line">    <span class="keyword">if</span> request.method == <span class="string">'GET'</span>:</span><br><span class="line">        <span class="keyword">return</span> <span class="string">"对不起，你是通过浏览器输入result.html直接到达结果页面，您没有提交任何表单，所以我们不能做出任何分析，请您先到调查问卷的页面填写表单。"</span></span><br><span class="line">    <span class="keyword">elif</span> request.method ==<span class="string">'POST'</span>:</span><br><span class="line">        <span class="comment">#这说明客户是通过提交表单过来的</span></span><br><span class="line">        visitor_gender= request.POST[<span class="string">'the_gender'</span>]</span><br><span class="line">        <span class="keyword">if</span> visitor_gender == <span class="string">"男"</span>：</span><br><span class="line">            <span class="keyword">return</span> HttpResponse(<span class="string">"Hello , 你的性别是男，因此，你很有可能喜欢看葫芦娃"</span> )</span><br><span class="line">        <span class="keyword">elif</span> visitor_gender==<span class="string">"女"</span></span><br><span class="line">            <span class="keyword">return</span> HttpResponse(<span class="string">"Hello ,你的性别是女，因此，你很有可能喜欢逛淘宝"</span> )</span><br></pre></td></tr></table></figure></p>
+<p>如果用户直接在浏览器里面输入result.html是得不到分析结果的，一定要在question.html里面填写表单，提交后才行。<br>于是我们完成了一个非常非常简单的表单，上面的表单需要客户填入字符串，然后提交字符串，而我们的云盘则是需要客户选择本地的文件，然后提交文件，其实也差不多。<br>我们需要需要将上面的form稍加修改</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">form</span> <span class="attr">action</span>=<span class="string">"result.html"</span> <span class="attr">method</span>=<span class="string">"POST"</span> <span class="attr">enctype</span>=<span class="string">"multipart/form-data"</span>&gt;</span></span><br><span class="line">  &#123;% csrf_token %&#125;</span><br><span class="line">  <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"file"</span> <span class="attr">name</span>=<span class="string">"myfile"</span> <span class="attr">required</span> /&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">br</span>&gt;</span> </span><br><span class="line">  <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"submit"</span> <span class="attr">name</span>=<span class="string">""</span> <span class="attr">value</span>=<span class="string">"OK"</span> /&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">form</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>其中的enctype是必须的，这是一种对提交文件进行编码上传的方式，我们不用过多理会，输入的类型当然就是“file”<br>还有就是  {% csrf_token %} 这是django防止表单恶意提交的安全验证机制，我们按照django规则放进去就好了，不需理会。</p>
+<p>我们把这个表单放进我们的index.html吧。</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;!doctype html&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">http-equiv</span>=<span class="string">"Content-Type"</span> <span class="attr">content</span>=<span class="string">"text/html; charset=UTF-8"</span> /&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">title</span>&gt;</span>Home Page<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">img</span> <span class="attr">src</span>=<span class="string">"static/logo.png"</span> /&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">p</span>&gt;</span>Welcome<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">p</span>&gt;</span>&#123;&#123; jiangjieyu1 &#125;&#125;<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">form</span> <span class="attr">action</span>=<span class="string">"result.html"</span> <span class="attr">method</span>=<span class="string">"POST"</span> <span class="attr">enctype</span>=<span class="string">"multipart/form-data"</span>&gt;</span></span><br><span class="line">    &#123;% csrf_token %&#125;</span><br><span class="line">    <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"file"</span> <span class="attr">name</span>=<span class="string">"myfile"</span> <span class="attr">required</span> /&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">br</span>&gt;</span> </span><br><span class="line">    <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"submit"</span> <span class="attr">name</span>=<span class="string">""</span> <span class="attr">value</span>=<span class="string">"OK"</span> /&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">form</span>&gt;</span> </span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<img src="/2017/06/12/django-tutorial11/11.1.png">
+<img src="/2017/06/12/django-tutorial11/11.2.png">
+<p>我们从上面可以看到，我们的数据会以post的方式提交到result.html页面，我们在那里负责的讲解员需要把数据存到数据库，然后给用户一个反馈，告诉他是否上传成功。如果成功，我们就回到回到主页，如果不成功，则在result页面输出不成功的字眼。怎么把数据存到数据库呢，我们先用一句<br>data=request.FILES[‘myfile’]<br>把上传的文件从请求里面取出放到data变量里面，<br>然后我们引用我们之前在models.py设计好的数据类，制作成一个小的数据单元（专业术语，一条记录），也就是数据库表单中的一行。我们说过，我们的数据结构需要三个栏目，一个是id，默认的，我们不要管，第二个是文件数据，这里我们传入data，第三个是上传日期，由于我们开启了自动添加模式，所以也不需要管了，所以这里生成这条记录只需要一个参数，也就是文件数据就可以了，也就是下面的这条代码<br>file = fileModel(data)<br>然后这条记录就生成了，我们需要把这条记录保存到数据库里面也很简单<br>file.save()<br>搞定<br>于是，我们需要招聘一位负责result的讲解员来负责这些功能，由于result页面主要是一些功能性的东西而不是展示性的，我们甚至可以不需要实体的result.html文件，由讲解员口述就可以了。<br>所以，我们在jiangjieyuan_mingdan.py中添加一个新的result_jiangjieyuan函数，在反馈给客户是否上传成功时，如果成功则返回主页，不成功则告诉用户不成功。这里我们用到了重定向的函数，所以要引用一下rediect<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> django.shortcuts <span class="keyword">import</span> render,redirect</span><br><span class="line"></span><br><span class="line"><span class="comment"># Create your views here.</span></span><br><span class="line"><span class="keyword">from</span> django.http <span class="keyword">import</span> HttpResponse</span><br><span class="line"><span class="keyword">from</span> datetime <span class="keyword">import</span> date</span><br><span class="line"><span class="keyword">from</span> .models <span class="keyword">import</span> fileModel</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">index_jiangjieyuan</span><span class="params">(request)</span>:</span></span><br><span class="line">    today = str(date.today())</span><br><span class="line">    word = <span class="string">"hello, today is "</span> + today</span><br><span class="line">    <span class="keyword">return</span> render(request,<span class="string">'index.html'</span>,&#123;<span class="string">'jiangjieyu1'</span>:word&#125;)</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">result_jiangjieyuan</span><span class="params">(request)</span>:</span></span><br><span class="line">  <span class="keyword">if</span> request.method == <span class="string">'POST'</span>:</span><br><span class="line">    data=request.FILES[<span class="string">'myfile'</span>]</span><br><span class="line">    file = fileModel(myfile=data)</span><br><span class="line">    file.save()</span><br><span class="line">    <span class="keyword">return</span> redirect(<span class="string">'/'</span>)</span><br><span class="line">  <span class="keyword">else</span>:</span><br><span class="line">    <span class="keyword">return</span> HttpResponse(<span class="string">"Sorry the uplaod is unsucessful."</span>)</span><br></pre></td></tr></table></figure></p>
+<img src="/2017/06/12/django-tutorial11/11.3.png">
+<ul>
+<li>注：之前有个小错误，就是设置file=fileModel()的时候，要把参数名myfile也一同写进去，所以，在此向看过之前版本的同学道歉。。实在是对不起了。也感谢同学们的反馈! *<br>此外，还要记得在myCloud目录下的urls.py文件里面把result.html的请求交给result_jiangjieyuan来处理<br>myCloud目录下的urls.py修改为<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> django.conf.urls <span class="keyword">import</span> url</span><br><span class="line"><span class="keyword">from</span> . <span class="keyword">import</span> jiangjieyuan_mingdan</span><br><span class="line">urlpatterns = [</span><br><span class="line">    url(<span class="string">r'result.html'</span>, jiangjieyuan_mingdan.result_jiangjieyuan),</span><br><span class="line">    url(<span class="string">r''</span>,jiangjieyuan_mingdan.index_jiangjieyuan),</span><br><span class="line">]</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>这时，你再运行服务器就可以使用上传文件的功能了。也就是说，你能够成功把数据记录到数据库了，但是，这时你会发现，你的myCloud目录并没有看到传上来的文件，那是因为，上传的文件，django会把它当做是一种MEDIA文件，我们需要设置MEDIA路径才能把文件传到服务器上。我们这里把上传上来的文件也当做是服务区的静态文件，因此，我们把static文件夹当做是MEDIA的路径。当然，你也可以另外新建一个文件夹作为MEDIA路径。<br>因此，settings.py里面添加一行代码<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">MEDIA_ROOT = os.path.join(BASE_DIR, <span class="string">'myCloud\static\media'</span>)</span><br></pre></td></tr></table></figure></p>
+<p>意思是我们将上传文件的父路径设为myCloud/static/media/<br>这时候你再上传文件就可以看到，media文件夹里面自动生成了upload文件夹，然后里面有你上传的文件。<br>总结一下，我们需要的做工作：<br>1.在index.html文档添加HTML表单的内容，用来收集用户的资料（在我们的案例中，就是用户的文件）<br>2.聘请result_jiangjieyuan负责文件的从request中的提取工作，此外还要负责将文件存进数据库<br>3.设置URL，让上传的请求能够转交给result_jiangjieyuan来处理<br>以上三点都是必须的，不分先后。</p>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+  <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+    <div>坚持原创技术分享，您的支持将鼓励我继续创作！</div>
+    <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+      <span>赏</span>
+    </button>
+    <div id="QR" style="display: none;">
+      
+      
+        <div id="alipay" style="display: inline-block">
+          <img id="alipay_qr" src="/images/myAlipay.png" alt="Lieren Alipay"/>
+          <p>支付宝打赏</p>
+        </div>
+      
+    </div>
+  </div>
+
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/06/12/django-tutorial10/" rel="next" title="Django新手教程10，私人云盘">
+                <i class="fa fa-chevron-left"></i> Django新手教程10，私人云盘
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/06/12/django-tutorial12/" rel="prev" title="Django新手教程12，列出数据">
+                Django新手教程12，列出数据 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div id="uyan_frame"></div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+
+      <section class="site-overview sidebar-panel sidebar-panel-active">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/logo.png"
+               alt="Lieren" />
+          <p class="site-author-name" itemprop="name">Lieren</p>
+           
+              <p class="site-description motion-element" itemprop="description"></p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives/">
+                <span class="site-state-item-count">30</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              <a href="/categories/index.html">
+                <span class="site-state-item-count">4</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Lieren</span>
+</div>
+
+
+
+<div class="powered-by">
+<i class="fa fa-user-md"></i><span id="busuanzi_container_site_uv">
+  访客数:<span id="busuanzi_value_site_uv"></span>
+</span>
+</div>
+
+<div class="theme-info">
+  <span class="post-count">全站共字</span>
+</div>
+<br/>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.1"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+    
+
+    
+      <!-- UY BEGIN -->
+      <script type="text/javascript" src="http://v2.uyan.cc/code/uyan.js?uid=2139086"></script>
+      <!-- UY END -->
+    
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.1.js"></script>
+  <script>AV.initialize("2nhVd4XLQfttbvmFClpr9JGr-gzGzoHsz", "Vdp3tKCpuqMGjHuvwk4bgI8u");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

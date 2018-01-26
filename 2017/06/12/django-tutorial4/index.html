@@ -1,0 +1,881 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.1" />
+
+
+
+
+
+
+<meta name="description" content="我们再看看服务器端到底都在做哪些工作，话说，域名服务商把游客指到我们的机器就完事了，接下来就是进入老王的势力范围，他可以随意安排参观路线，设计展位的模样，比如，我们在浏览器上输入laowang.com域名服务商会把我们指令到老王家的展馆，然后老王家的接待员（服务器软件，比如大名鼎鼎的apache，或异军突起的nginx这两个都是比较有名的免费服务器软件，还有很多收费的就不一一介绍了）就会把我们指引">
+<meta property="og:type" content="article">
+<meta property="og:title" content="django新手教程4,从URL开始，聊聊网络服务 (2)">
+<meta property="og:url" content="http://zju.xyz/2017/06/12/django-tutorial4/index.html">
+<meta property="og:site_name" content="myCabine">
+<meta property="og:description" content="我们再看看服务器端到底都在做哪些工作，话说，域名服务商把游客指到我们的机器就完事了，接下来就是进入老王的势力范围，他可以随意安排参观路线，设计展位的模样，比如，我们在浏览器上输入laowang.com域名服务商会把我们指令到老王家的展馆，然后老王家的接待员（服务器软件，比如大名鼎鼎的apache，或异军突起的nginx这两个都是比较有名的免费服务器软件，还有很多收费的就不一一介绍了）就会把我们指引">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://zju.xyz/2017/06/12/django-tutorial4/4.1.png">
+<meta property="og:updated_time" content="2017-06-11T19:21:02.775Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="django新手教程4,从URL开始，聊聊网络服务 (2)">
+<meta name="twitter:description" content="我们再看看服务器端到底都在做哪些工作，话说，域名服务商把游客指到我们的机器就完事了，接下来就是进入老王的势力范围，他可以随意安排参观路线，设计展位的模样，比如，我们在浏览器上输入laowang.com域名服务商会把我们指令到老王家的展馆，然后老王家的接待员（服务器软件，比如大名鼎鼎的apache，或异军突起的nginx这两个都是比较有名的免费服务器软件，还有很多收费的就不一一介绍了）就会把我们指引">
+<meta name="twitter:image" content="http://zju.xyz/2017/06/12/django-tutorial4/4.1.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://zju.xyz/2017/06/12/django-tutorial4/"/>
+
+
+
+
+
+  <title>django新手教程4,从URL开始，聊聊网络服务 (2) | myCabine</title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">myCabine</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">A blog record my mind.</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://zju.xyz/2017/06/12/django-tutorial4/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Lieren">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/logo.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="myCabine">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">django新手教程4,从URL开始，聊聊网络服务 (2)</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-06-12T05:19:22+08:00">
+                2017-06-11
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/django-tutorial/" itemprop="url" rel="index">
+                    <span itemprop="name">django_tutorial</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+             <span id="/2017/06/12/django-tutorial4/" class="leancloud_visitors" data-flag-title="django新手教程4,从URL开始，聊聊网络服务 (2)">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数 </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计</span>
+                
+                <span title="字数统计">
+                  
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长</span>
+                
+                <span title="阅读时长">
+                  
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>我们再看看服务器端到底都在做哪些工作，话说，域名服务商把游客指到我们的机器就完事了，接下来就是进入老王的势力范围，他可以随意安排参观路线，设计展位的模样，比如，我们在浏览器上输入<br>laowang.com<br>域名服务商会把我们指令到老王家的展馆，然后老王家的接待员（服务器软件，比如大名鼎鼎的apache，或异军突起的nginx这两个都是比较有名的免费服务器软件，还有很多收费的就不一一介绍了）就会把我们指引到老王家展馆的展览大厅（一般来说就是服务器根目录下的/var/www目录），我们会看到该目录下会有不少html文件，这就相当于一个个的展柜，还有不少目录，这些是大展厅里面的小的隔间，小展厅。<br>也就是说，敲入<br>laowang.com<br>我们见到的是一个目录一样的东西，你可以认为我们已经进入了大展厅，看到里面面有很多展览的展柜（文件），也有很多的小展厅（目录）<br>我们一般会看到其中有一个叫index.html的展柜，这是默认的主页展柜，也就是俗称的主页，再通俗地说，就是展示老王镇馆之宝的展柜<br>于是，我们可以在浏览器里面把url补齐，输入<br>laowang.com/index.html<br>根据这个url，我们定位到的就不是文件夹，而是文件了，这就是相当于，我们来到了老王家展馆之宝的展柜前面<br>于是我们可以欣赏这个ndex.html上面的诗词了。</p>
+<p>题外话：你可能会有疑问，好像有的网站，只输入域名就能访问主页，比如，只输入laowang.com就能访问laowang.com/index.html，那是因为人家服务器软件比较智能，知道你来老王家肯定不是来看展厅的情况（文件夹），想看的是展柜（文件）展示的内容，所以你刚进入大厅，进入的是目录，本来你应该看到的是，形形色色的展柜，和各个小展厅。但是，服务器软件马上会自动把你送到最为重要的展柜(index.html)面前。这是服务器软件比较智能的表现，我们暂且不提。</p>
+<p>index.html这个页面上面可能会有很多链接，比如，‘联系我们’会把我们链接到<br>/var/www/contact.html<br>而此时相应的，此时我们浏览器上的url显示的是<br>laowang.com/contact.html</p>
+<p>你还会发现，主页上，还有很多关于老王出场各种高端场合的新闻报道，比如点击“新闻纪实：老王出席读者见面会”<br>你就会被引领到<br>/var/www/news/老王出席读者见面会.html<br>这时，你的浏览器上的url显示的是<br>laowang.com/news/老王出席读者见面会.html<br>仔细研究你就会发现<br>laowang.com<br>已经跟<br>老王家展馆/root/var/www<br>对应起来了，也就是<br>对于外来的游客来说，展厅是 laowang.com 这个地方。<br>对于老王来说，展厅是 /root/var/www</p>
+<p>于是我们就把 laowang.com 称为外部URL<br>/root/var/www称为内部URL</p>
+<p>因为是接待员（服务器软件）把游客接待我们的展厅的，所以我们的接待员首先要知道展厅的位置。我们必须得告诉我们的接待员（服务器软件）。<br>需要一条类似这样的指令：<br>url(‘laowang.com’,’/root/var/www’)<br>这是我们在配置服务器软件，比如apache或nginx时都必不可少的语句，只有这样，才能把内部URL和外部URL对应起来。</p>
+<p>这也是为什么老王家要聘请接待员（安装服务器软件）的原因，因为实在是太重要，它做了很多接待，维持秩序，清洁的工作。一个大房子里面有了接待的相关人员，我们才称之为展馆，一台计算机只有安装并运行过了服务器软件，我们才能将这台计算机称之为服务器。<br>只要服务器软件知道了外部URL和内部URL的对应关系，才能限制所有游客的活动范围，让他们只能接触<br>/root/var/www<br>这个目录里面的东西，也就是展示大厅里面的东西，包括文件以及子目录。出了这个目录的其他地方，比如root/etc/下面存放的各种展馆设备信息，运营日志档案等是不能对外开放的，另外，员工休息室/root/bin/也不能对外开放，等等。<br>服务器软件就在门口等着（业界术语，叫监听），有人来了就把他指引到展厅去。<br>既然这里提到了门口，我们就顺便在聊聊门口的概念吧。也就是传说中的端口。<br>端口(port)实际上就是大门，首先要清楚一点，一个大房子肯定是不止一个门的，就比如老王家的展馆，不仅有迎客的大门，还有工作人员的通道，还有物资运输的门口等，对于计算机来说，因为内部机制复杂，所需要的门非常多，我们给门编号，能有好几千，其中0到1000号，是系统自带的，就是说，不管是老王家，还是老李家，你们家要建房子，至少要有1000个大门，这是业界标准，因为系统很有可能会用到这1000多的端口，比如，我们看20和21号，这两个门，就是负责文件传输的，老王家的展馆在闹市中心，老王在住宅区的家里把字画裱好，就是通过这两个端口往展馆运送的，从展馆的20或21号进去，而老王想管理展馆，那么他就得从22号管理员通道进入，通过这个通道会有打卡，输密码等安全措施，进去后就可以到展馆的任何地方溜达。而迎客的大门，也就是传说中的80号端口，从这个端口进来的游客不需要什么什么验证就可以进来，也就只能在展厅里逛逛了。<br>继续讲我们端口，你要是留意新闻的话，会注意到端口一词往往跟安全两字联系起来，那是因为，ip地址基本都是公开的，也就是说，任何人都可以合法的找到你的房子，在你的房子旁边转悠，要把他们拦住，不让他们从不该进入的门进入就是端口的责任了，比如说80端口，这个是开放的大门，反正从这个门进去只允许访问大厅，所以，大家随意出入，像22号的管理员通道就不行了，要进行严格的身份验证，还有其他的某些端口，进入者也有权限访问某些私密文件，这些门口一定要把好关。否则的话，某些黑客伪装一下从这些端口进去，损失可以说是非常大的。他们可能在溜进展馆后，仗着伪装的管理员身份，在里面投放了不少某线上澳门赌场的垃圾广告，扰乱了老王家展馆的正常秩序，老王那个恨啊。让老王更恨但是，黑客走的时候还顺手偷取展馆的绝密资料，这批资料是老王呕心沥血写出来的，极其搞笑的段子，运进展馆只给付钱用户看的，结果黑客得到之后就在网络上散播开来，人人都成了段子手。又或者，黑客会修改服务软件的代码或配置，就相当于，把老王家展馆的服务人员掉包了，这些人员素质极差，使得游客体验感直线下降，总之黑客的破坏手段不一，各式各样。<br>所以，网络安全，端口的防护尤为重要，像大户人家，基本都要在门口设置保安，但是计算机的端口实在是太多了，防不胜防啊，而且，有时候，黑客也并不是要从某个隐秘的端口进去才能搞破坏，DoS攻击就是其中一种大摇大摆的进攻方式，黑客伪造了大量的傀儡游客，让他们每时每刻都去访问展馆，如果展馆的资源（比如带宽）都用来接待这些傀儡游客，那么真正的游客就挤不进展馆了，而且，同一时刻涌入太多的傀儡游客，展馆肯定会爆掉的，像这种进攻，他也不是想偷老王什么段子了，纯粹就是为了搞破坏。而且有时你都不知道是什么人干的，是竞争对手，当代回车诗派的人？也有可能是，过两天就登门拜访进行推销的安保公司，他们公司的人人高马大，当得了保安，也耍的了流氓。（据不靠谱的阴谋论说，这世界上不少的病毒都是杀毒公司放出来，这说法就权当是玩笑话吧）。<br>既然这些破事防不胜防，有什么好的办法吗，一劳永逸是不可能，这是一项长期的矛盾，但是，也不是毫无办法啊，总的来看备份是最好的应对措施，展馆诚可贵，资料价更高。留得段子在，不怕没柴烧。展馆毁了可以再建，资料没了可就真玩完了。备份吧，少年。江湖上的事谁说的准呢，除了外边的黑客处心积虑，想法设法地想搞破坏，如果老王剥削严重，他们家里面说不定有不少员工正在拜读《MySQL,从删库到跑路》呢。<br><img src="/2017/06/12/django-tutorial4/4.1.png" title="https://www.v2ex.com/t/276419"></p>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+  <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+    <div>坚持原创技术分享，您的支持将鼓励我继续创作！</div>
+    <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+      <span>赏</span>
+    </button>
+    <div id="QR" style="display: none;">
+      
+      
+        <div id="alipay" style="display: inline-block">
+          <img id="alipay_qr" src="/images/myAlipay.png" alt="Lieren Alipay"/>
+          <p>支付宝打赏</p>
+        </div>
+      
+    </div>
+  </div>
+
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/06/12/django-tutorial3/" rel="next" title="django新手教程3,从URL开始，聊聊网络服务 (1)">
+                <i class="fa fa-chevron-left"></i> django新手教程3,从URL开始，聊聊网络服务 (1)
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/06/12/django-tutorial5/" rel="prev" title="django-tutorial5, IDE">
+                django-tutorial5, IDE <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div id="uyan_frame"></div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+
+      <section class="site-overview sidebar-panel sidebar-panel-active">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/logo.png"
+               alt="Lieren" />
+          <p class="site-author-name" itemprop="name">Lieren</p>
+           
+              <p class="site-description motion-element" itemprop="description"></p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives/">
+                <span class="site-state-item-count">30</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              <a href="/categories/index.html">
+                <span class="site-state-item-count">4</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Lieren</span>
+</div>
+
+
+
+<div class="powered-by">
+<i class="fa fa-user-md"></i><span id="busuanzi_container_site_uv">
+  访客数:<span id="busuanzi_value_site_uv"></span>
+</span>
+</div>
+
+<div class="theme-info">
+  <span class="post-count">全站共字</span>
+</div>
+<br/>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.1"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+    
+
+    
+      <!-- UY BEGIN -->
+      <script type="text/javascript" src="http://v2.uyan.cc/code/uyan.js?uid=2139086"></script>
+      <!-- UY END -->
+    
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.1.js"></script>
+  <script>AV.initialize("2nhVd4XLQfttbvmFClpr9JGr-gzGzoHsz", "Vdp3tKCpuqMGjHuvwk4bgI8u");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

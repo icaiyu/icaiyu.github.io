@@ -1,0 +1,895 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.1" />
+
+
+
+
+
+
+<meta name="description" content="我们把不少文件存进去了，怎么把他们取出来，列到主页上呢。你肯定是要使用数据库的接口，然后从里面抓取数据的，但是，我们之前说过django通过ORM把数据库封装了，所以，每次取数据库的数据也非常简单我们每次，叫一名讲解员引用models里面的数据模型，代码如下 12from models import fileModelall_data = fileModel.objects.all() 只要这样的">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Django新手教程12，列出数据">
+<meta property="og:url" content="http://zju.xyz/2017/06/12/django-tutorial12/index.html">
+<meta property="og:site_name" content="myCabine">
+<meta property="og:description" content="我们把不少文件存进去了，怎么把他们取出来，列到主页上呢。你肯定是要使用数据库的接口，然后从里面抓取数据的，但是，我们之前说过django通过ORM把数据库封装了，所以，每次取数据库的数据也非常简单我们每次，叫一名讲解员引用models里面的数据模型，代码如下 12from models import fileModelall_data = fileModel.objects.all() 只要这样的">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://zju.xyz/2017/06/12/django-tutorial12/12.1.png">
+<meta property="og:image" content="http://zju.xyz/2017/06/12/django-tutorial12/12.2.png">
+<meta property="og:image" content="http://zju.xyz/2017/06/12/django-tutorial12/12.3.png">
+<meta property="og:image" content="http://zju.xyz/2017/06/12/django-tutorial12/12.4.png">
+<meta property="og:updated_time" content="2017-07-05T21:43:27.056Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Django新手教程12，列出数据">
+<meta name="twitter:description" content="我们把不少文件存进去了，怎么把他们取出来，列到主页上呢。你肯定是要使用数据库的接口，然后从里面抓取数据的，但是，我们之前说过django通过ORM把数据库封装了，所以，每次取数据库的数据也非常简单我们每次，叫一名讲解员引用models里面的数据模型，代码如下 12from models import fileModelall_data = fileModel.objects.all() 只要这样的">
+<meta name="twitter:image" content="http://zju.xyz/2017/06/12/django-tutorial12/12.1.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://zju.xyz/2017/06/12/django-tutorial12/"/>
+
+
+
+
+
+  <title>Django新手教程12，列出数据 | myCabine</title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">myCabine</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">A blog record my mind.</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://zju.xyz/2017/06/12/django-tutorial12/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Lieren">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/logo.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="myCabine">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Django新手教程12，列出数据</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-06-12T05:49:22+08:00">
+                2017-06-11
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/django-tutorial/" itemprop="url" rel="index">
+                    <span itemprop="name">django_tutorial</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+             <span id="/2017/06/12/django-tutorial12/" class="leancloud_visitors" data-flag-title="Django新手教程12，列出数据">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数 </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计</span>
+                
+                <span title="字数统计">
+                  
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长</span>
+                
+                <span title="阅读时长">
+                  
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>我们把不少文件存进去了，怎么把他们取出来，列到主页上呢。你肯定是要使用数据库的接口，然后从里面抓取数据的，但是，我们之前说过django通过ORM把数据库封装了，所以，每次取数据库的数据也非常简单<br>我们每次，叫一名讲解员引用models里面的数据模型，代码如下</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> models <span class="keyword">import</span> fileModel</span><br><span class="line">all_data = fileModel.objects.all()</span><br></pre></td></tr></table></figure>
+<p>只要这样的一句话，就把所有的数据取出并存到all_data列表中了，我们接下来要做的就是，通过主页的讲解员，对每一个数据（或者说每一个保存的文档），我们根据文档的名字和路径制作成HTML的table。<br>比如使用这样的句子</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">file_table = <span class="string">""</span></span><br><span class="line"><span class="keyword">for</span> file <span class="keyword">in</span> all_data:</span><br><span class="line">    file_table += <span class="string">'&lt;tr&gt;&lt;a href="%s"&gt;%s&lt;/a&gt;&lt;/tr&gt;'</span> % (file.name,file.url)</span><br></pre></td></tr></table></figure>
+<p>最后把file_table 当初是解说语插入index.html就可以了。<br>我们可以看到，我们这样制作HTML列表是比较粗糙的，还需要自己加上HTML表头等一些东西来完善，这样是比较麻烦的，而且有个最大的问题是不能选择分页，也就是说，如果你存储的文档比较多，他也是一次性全部列出来，如果你要控制10个10个地列出的话，那你上面的函数就要修改，比如每十个数据做一次循环，这就涉及有点难度的算法问题了，django没有帮你把这些都省了，但是，万能的网友帮你把这个省了，有人专门把这样的事情包装起来了，因为，我们可以看到，每次，我们都是需要从数据库中取出数据，然后一个个数据做成HTML能认的表格，最后当做是解说语插入到网页中去，这个制作表格的过程确实比较乏味。所以我们就借助外包装的package来帮助我们完成这项任务。<br>安装也比较简单，使用pip就可以了，我们还是安装在虚拟环境中。<br>确认我们处于django虚拟环境，输入<br>pip install django-tables2<br>用pip list<br>查看有没有装进去了然后，为了使用这个插件，我们将<br>‘django_tables2’,<br>它放入settings.py的 INSTALLED_APPS 里面</p>
+<img src="/2017/06/12/django-tutorial12/12.1.png">
+<p>然后我们在，myCloud目录里面新建一个叫tables.py的文件用来制作表格。<br>输入</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> django_tables2 <span class="keyword">as</span> tables</span><br><span class="line"><span class="keyword">from</span> .models <span class="keyword">import</span> fileModel</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">fileTable</span><span class="params">(tables.Table)</span>:</span></span><br><span class="line">    <span class="class"><span class="keyword">class</span> <span class="title">Meta</span>:</span></span><br><span class="line">        model = fileModel</span><br></pre></td></tr></table></figure>
+<p>以上代码表示的是，我们按照数据库的模型，制作好了表格的模型。本来数据库和表格之间就有对应关系，我们之前说过，我们数据库模型的表格有三栏，一栏是默认有的id号，另一栏是存文件，最后一栏存上传日期，而我们的表格用这种方式class Meta的方式打造，表示的是，表格的格式跟数据库一样，这样他就能从数据库中取出数据然后将这些数据渲染成HTML表格展示出来。<br>我们接下来要把表格做成解说语插到我们的主页中去<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> django.http <span class="keyword">import</span> HttpResponse</span><br><span class="line"><span class="keyword">from</span> datetime <span class="keyword">import</span> date</span><br><span class="line"><span class="keyword">from</span> .models <span class="keyword">import</span> fileModel</span><br><span class="line"><span class="keyword">from</span> .tables <span class="keyword">import</span> fileTable</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">index_jiangjieyuan</span><span class="params">(request)</span>:</span></span><br><span class="line">    today = str(date.today())</span><br><span class="line">    word = <span class="string">"hello, today is "</span> + today</span><br><span class="line">    table = fileTable(fileModel.objects.all())</span><br><span class="line">    <span class="keyword">return</span> render(request,<span class="string">'index.html'</span>,&#123;<span class="string">'jiangjieyu1'</span>:word,<span class="string">'jiangjieyu2'</span>:table&#125;)</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">result_jiangjieyuan</span><span class="params">(request)</span>:</span></span><br><span class="line">    print(<span class="string">'ready to result'</span>)</span><br><span class="line">    <span class="keyword">if</span> request.method == <span class="string">'POST'</span>:</span><br><span class="line">        data=request.FILES[<span class="string">'myfile'</span>]</span><br><span class="line">        file = fileModel(myfile=data)</span><br><span class="line">        file.save()</span><br><span class="line">        <span class="keyword">return</span> redirect(<span class="string">'/'</span>)</span><br><span class="line">    <span class="keyword">return</span> HttpResponse(<span class="string">"Sorry the uplaod is unsucessful."</span>)</span><br></pre></td></tr></table></figure></p>
+<img src="/2017/06/12/django-tutorial12/12.2.png">
+<p>然后把我们讲解语2插入到index.html中去。<br>首先要在index.html的第一行加上<br><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#123;% load render_table from django_tables2 %&#125;</span><br></pre></td></tr></table></figure></p>
+<p>然后在下面插入<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#123;% render_table jiangjieyu2 %&#125;</span><br></pre></td></tr></table></figure></p>
+<p>最终效果是<br><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">&#123;% load render_table from django_tables2 %&#125;</span><br><span class="line"><span class="meta">&lt;!doctype html&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">http-equiv</span>=<span class="string">"Content-Type"</span> <span class="attr">content</span>=<span class="string">"text/html; charset=UTF-8"</span> /&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">title</span>&gt;</span>Home Page<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">img</span> <span class="attr">src</span>=<span class="string">"/static/logo.png"</span> /&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">p</span>&gt;</span>Welcome<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">p</span>&gt;</span>&#123;&#123; jiangjieyu1 &#125;&#125;<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">form</span> <span class="attr">action</span>=<span class="string">"result.html"</span> <span class="attr">method</span>=<span class="string">"POST"</span> <span class="attr">enctype</span>=<span class="string">"multipart/form-data"</span>&gt;</span></span><br><span class="line">    &#123;% csrf_token %&#125;</span><br><span class="line">    <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"file"</span> <span class="attr">name</span>=<span class="string">"myfile"</span> <span class="attr">required</span> /&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">br</span>&gt;</span> </span><br><span class="line">    <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"submit"</span> <span class="attr">name</span>=<span class="string">""</span> <span class="attr">value</span>=<span class="string">"OK"</span> /&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">form</span>&gt;</span> </span><br><span class="line">  &#123;% render_table jiangjieyu2 %&#125;</span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
+<img src="/2017/06/12/django-tutorial12/12.3.png">
+<p>这时你再运行服务器，就应该能看到你之前网数据库上传的的文件了，然后你还会发现这些文件名是一个链接，但是，点击文件还是不可以下载的，你为你还没有允许通过URL找到上传的文件。一般情况下，我们的服务器需要文件下载的功能，那么这需要网络框架和部署时的服务器软件一起配置才能发挥最好的效果，那么只依靠django能不能行？肯定可以啊。我们在DEBUG模式下，可以使用一个static函数将我们的文件路径和url绑定，然后就可以靠着url的请求来下载了，<br>到这里一般就可以点击列表上的文件名进行轻松下载了。<br>但是，有时候如果是txt文件，用某些浏览器可能会将该文件强行打开，或者跳转到别的地方试图将该文件打开，为了保险起见，我们需要在渲染的HTML的a标签里面添加一个download字眼，这样的话，强求浏览器进行下载而不是试图去打开了。<br>为什么需要这样？我们可以看到，django的tables2能够自动读取数据库中的记录，其中一栏是一个文件，那么tables2会自动将这一栏渲染成一个超链接，链接地址是文件的路径，显示的名字是文件名，但是，这些都是自动做好的了，我们所要做的就是往里面添加一个download属性。<br>这里，我们需要在tables.py文件中将myfile栏进行稍微的加工。稍微修改一下fileTable，添加一行</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> django_tables2 <span class="keyword">as</span> tables</span><br><span class="line"><span class="keyword">from</span> .models <span class="keyword">import</span> fileModel</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">fileTable</span><span class="params">(tables.Table)</span>:</span></span><br><span class="line">    myfile = tables.columns.FileColumn(attrs=&#123;<span class="string">'a'</span>: &#123;<span class="string">'download'</span>: <span class="string">''</span>&#125;&#125;)</span><br><span class="line">    <span class="class"><span class="keyword">class</span> <span class="title">Meta</span>:</span></span><br><span class="line">        model = fileModel</span><br></pre></td></tr></table></figure>
+<img src="/2017/06/12/django-tutorial12/12.4.png">
+<p>这样就会强制下载而不是跳转或者打开文件了。<br>注意，我们这里的download字眼为空，则下载后的文件名还是原来的文件名，你要是填入‘葫芦娃.avi’那么所有的下载后的文件名字都会是这个.</p>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+  <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+    <div>坚持原创技术分享，您的支持将鼓励我继续创作！</div>
+    <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+      <span>赏</span>
+    </button>
+    <div id="QR" style="display: none;">
+      
+      
+        <div id="alipay" style="display: inline-block">
+          <img id="alipay_qr" src="/images/myAlipay.png" alt="Lieren Alipay"/>
+          <p>支付宝打赏</p>
+        </div>
+      
+    </div>
+  </div>
+
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/06/12/django-tutorial11/" rel="next" title="Django新手教程11，上传文件与制作表单">
+                <i class="fa fa-chevron-left"></i> Django新手教程11，上传文件与制作表单
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/06/12/django-tutorial13/" rel="prev" title="Django新手教程13，删除文档">
+                Django新手教程13，删除文档 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div id="uyan_frame"></div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+
+      <section class="site-overview sidebar-panel sidebar-panel-active">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/logo.png"
+               alt="Lieren" />
+          <p class="site-author-name" itemprop="name">Lieren</p>
+           
+              <p class="site-description motion-element" itemprop="description"></p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives/">
+                <span class="site-state-item-count">30</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              <a href="/categories/index.html">
+                <span class="site-state-item-count">4</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Lieren</span>
+</div>
+
+
+
+<div class="powered-by">
+<i class="fa fa-user-md"></i><span id="busuanzi_container_site_uv">
+  访客数:<span id="busuanzi_value_site_uv"></span>
+</span>
+</div>
+
+<div class="theme-info">
+  <span class="post-count">全站共字</span>
+</div>
+<br/>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.1"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+    
+
+    
+      <!-- UY BEGIN -->
+      <script type="text/javascript" src="http://v2.uyan.cc/code/uyan.js?uid=2139086"></script>
+      <!-- UY END -->
+    
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.1.js"></script>
+  <script>AV.initialize("2nhVd4XLQfttbvmFClpr9JGr-gzGzoHsz", "Vdp3tKCpuqMGjHuvwk4bgI8u");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

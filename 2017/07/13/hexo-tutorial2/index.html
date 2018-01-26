@@ -1,0 +1,907 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.1" />
+
+
+
+
+
+
+<meta name="description" content="本教程的特色本教程跟其他的傻瓜式操作讲解教程不一样，本教程虽然设定的读者的水平很低，但是我们的逼格很高，不会仅仅只是告诉你如何一步步使用hexo，我会添加很多计算机网络的内容，让你了解博客到底是一个什么样的东西。我们作为网络时代的新人类，我们不仅要知其然，还要知其所以然，懂点网络相关的知识，以后也好维护我们的博客。 博客是什么？简单地说，博客就是一个网站！我们的文章需要让大家浏览，那么，我们就需要">
+<meta property="og:type" content="article">
+<meta property="og:title" content="hexo_tutorial2">
+<meta property="og:url" content="http://zju.xyz/2017/07/13/hexo-tutorial2/index.html">
+<meta property="og:site_name" content="myCabine">
+<meta property="og:description" content="本教程的特色本教程跟其他的傻瓜式操作讲解教程不一样，本教程虽然设定的读者的水平很低，但是我们的逼格很高，不会仅仅只是告诉你如何一步步使用hexo，我会添加很多计算机网络的内容，让你了解博客到底是一个什么样的东西。我们作为网络时代的新人类，我们不仅要知其然，还要知其所以然，懂点网络相关的知识，以后也好维护我们的博客。 博客是什么？简单地说，博客就是一个网站！我们的文章需要让大家浏览，那么，我们就需要">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://zju.xyz/2017/07/13/hexo-tutorial2/1.png">
+<meta property="og:updated_time" content="2017-07-13T21:35:45.930Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="hexo_tutorial2">
+<meta name="twitter:description" content="本教程的特色本教程跟其他的傻瓜式操作讲解教程不一样，本教程虽然设定的读者的水平很低，但是我们的逼格很高，不会仅仅只是告诉你如何一步步使用hexo，我会添加很多计算机网络的内容，让你了解博客到底是一个什么样的东西。我们作为网络时代的新人类，我们不仅要知其然，还要知其所以然，懂点网络相关的知识，以后也好维护我们的博客。 博客是什么？简单地说，博客就是一个网站！我们的文章需要让大家浏览，那么，我们就需要">
+<meta name="twitter:image" content="http://zju.xyz/2017/07/13/hexo-tutorial2/1.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://zju.xyz/2017/07/13/hexo-tutorial2/"/>
+
+
+
+
+
+  <title>hexo_tutorial2 | myCabine</title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">myCabine</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">A blog record my mind.</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://zju.xyz/2017/07/13/hexo-tutorial2/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Lieren">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/logo.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="myCabine">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">hexo_tutorial2</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-07-12T23:44:33Z">
+                2017-07-12
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/hexo-tutorial/" itemprop="url" rel="index">
+                    <span itemprop="name">hexo_tutorial</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+             <span id="/2017/07/13/hexo-tutorial2/" class="leancloud_visitors" data-flag-title="hexo_tutorial2">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">阅读次数 </span>
+               
+                 <span class="leancloud-visitors-count"></span>
+             </span>
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计</span>
+                
+                <span title="字数统计">
+                  
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长</span>
+                
+                <span title="阅读时长">
+                  
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="本教程的特色"><a href="#本教程的特色" class="headerlink" title="本教程的特色"></a>本教程的特色</h1><p>本教程跟其他的傻瓜式操作讲解教程不一样，本教程虽然设定的读者的水平很低，但是我们的逼格很高，不会仅仅只是告诉你如何一步步使用hexo，我会添加很多计算机网络的内容，让你了解博客到底是一个什么样的东西。我们作为网络时代的新人类，我们不仅要知其然，还要知其所以然，懂点网络相关的知识，以后也好维护我们的博客。</p>
+<h1 id="博客是什么？"><a href="#博客是什么？" class="headerlink" title="博客是什么？"></a>博客是什么？</h1><p>简单地说，博客就是一个网站！<br>我们的文章需要让大家浏览，那么，我们就需要把文章放到网站上，于是我们就需要一台网络服务器，帮助我们把网站架设起来，什么是网络服务器呢，任何计算机都可以是网络服务器，就拿你现在使用的Windows10电脑来说，只要它能联网，然后，我们安装上网络服务软件（比如说大名鼎鼎的Apache、Nginx），它就变成了一台网络服务器了，为什么要装网络服务软件呢，因为，即使你的电脑能联网了，一般也都是你去访问别人的网站，因为计算机会保护你的隐私，所以别人是不能访问你的电脑的，那么，你写的文章别人就不能看到了，所以，你需要允许别人访问你的电脑才行，这就是网络服务软件所要做的工作了。<br>网络服务器主要做了什么？且听我细细说来<br>别人通过在浏览器上输入你的IP地址来访问你的电脑，你肯定不希望别人能够浏览你的电脑的所有东西，比如某些私密视频。这时候，你肯定是在电脑上圈出一点地盘来给游客访问，比如你在D盘上新建个www文件夹，然后里面新建一个txt文件，在这个txt文件里面写好你的文章，你肯定是希望游客只能游览www文件夹里面的东西，www文件夹旁边的学习资料以及里面的视频你是不希望游客知道他的存在的。所以，你需要网络服务软件，你在里面用如下的代码配置一下<br>URL(ip,D:/www)<br>上面指令的意思是，根据上面的指令，网络服务器软件（也就是你安装的Apache）允许别人通过输入IP地址来访问你的电脑，但是他们只能前往D盘的www文件夹，所以他们就只能看到里面的txt文件和文件里面的文章，这样是不是很简单，也很完美。一个的网络服务就这么搭建起来了。但是txt只是一个文本文件，其所能展示的内容实在是太有限了，比如文章里面有些重点，我们希望字体能变成红色，粗体，而我们在文章中提到原谅两个字的时候，我们希望他们是绿色的字体。我们还希望文章能有一些排版，比如标题能够居中，字体大一些，这些靠txt是办不到的，为了统一标准，互联网协会规定，互联网之间的内容展示通过一种叫HTML的文件来完成，HTML叫做超文本标记语言。长这样的<br><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">title</span>&gt;</span>我是标题<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">p</span>&gt;</span>   我是内容 <span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
+<p>我们通过浏览器游览网页看到的几乎全都这样的是HTML文件！<br>其中尖括号里面的东西就叫做标签。<br>这样一来，浏览器就能通过这些标签来知道哪些是标题，哪些是内容，这些默认的标签有默认的属性，方便浏览器展示文字内容，比如浏览器通过标题标签知道了“我的标题”这是一个标题，于是他会自动使用较大的字体，浏览器通过段落标签知道了“内容”这是段落内容，于是浏览器会另起一段，然后你可以自己规定一些自己的标签比如强调标签，然后在里面写上属性，比如字体：粗体，颜色：红色，浏览器根据这些属性会自动将这些强调标签之间夹着的句子认作是你需要强调的句子，然后跟你规定的属性展示为红色粗体。互联网之间传输的内容都是文本文件，浏览器根据这些有着各自标签的文本文件渲染之后才为你展现了花花绿绿的网页内容。实际上，你所用的word也是这样的，你在word图形界面上的手动设置的各种字体和颜色，word会自动转化为类似标签一样的文本东西对其进行规定的，这些规定的标签文本和你的文章混在一起保存在doc文件中，使用word再次打开的时候 ，word会读取这些标签然后根据标签规定的属性渲染你的文字，这样你就能看到花花绿绿的文章了，只不过这些标签只能word软件能看得懂，你要是强行用sublime等软件打开看到的就是乱码，这也解释了，为什么我们浏览器不用doc作为标准，虽然doc也能展示花花绿绿的内容，但是互联网不以此作为标准。一方面，互联的标准当然得由大家规定，不能由微软说了算，另一方面也是微软的doc文件的规定只是给word软件看的，只有word软件能看得懂，我们人类是无法读这些乱码的，从而我们要制作网页那就只能使用word软件了，那怎么行呢。所以，互联网选择了HTML作为标准，这个标准不仅浏览器看得懂，我们人类也能看得懂，所以，我们是可以通过sublime等文本编辑器手写这些网页的。当然，完全自己手写这些网页还是非常反人类的，所以，类似word软件相对于doc，我们也有很多软件可以便利我们编辑HTML文件，前端设计师的工作，就是利用这些工具（比如dreamwaver）专门编辑这些HTML文档，设计优美的页面。<br>虽然，美化HTML不算很难，但是要上手还是需要一定的学习的，如果你对前端设计师的工作有兴趣，可以进行深入的学习。我们现在，先不管页面的颜值，我们先靠标题，内容等最简单的标签做出我们的文章的网页。当然，我们的博客不止一篇文章，比如我们有三篇文章，分别是<br>我心目中的葫芦娃.html<br>我想成为蝙蝠侠那样的有钱人.html、<br>从钢铁侠谈谈如何教你做人.html<br>我们在www文件夹里面新建一个post文件夹，把这些文章的网页文件放进去，现在我们需要一个博客主页来管理这些文章，于是，我们在WWW文件夹里面新建一个index.html文件，这些html文件也被称为静态文件。任何人来游览，看到的内容都是一样的，也就是一个个固定的HTML文档，张三游览你的博客和李四浏览你的博客，看到的文章是一样的，那么相应的动态文件是什么呢，比如搭建购物网站的网页文件，这些文件可不是固定死。张三登录淘宝和李四登录淘宝看到的东西是不一样的，淘宝向他们推荐的商品也是不一样的。这些HTML就是通过程序（比如PHP）动态生成的，我们称之为动态文件。</p>
+<p>回到正题，我们希望我们的博客主页页面里面能够列出我们所有的博客文章的标题，然后都有相应的链接，可以跳转到相应的博客文章的页面上去。<br>主页的html代码如下<br><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">title</span>&gt;</span>立而人的博客<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">p</span>&gt;</span>大家好，欢迎参观我的博客<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">p</span>&gt;</span>以下是我所有的博文，博君一笑<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">a</span> 链接=<span class="string">"/post/我心目中的葫芦娃.html"</span>&gt;</span>第一篇，我心目中的葫芦娃<span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">a</span> 链接=<span class="string">"/post/我想成为蝙蝠侠那样的有钱人.html"</span>&gt;</span> 第二篇，我想成为蝙蝠侠那样的有钱人<span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">a</span> 链接=<span class="string">"/post/从钢铁侠谈谈如何教你做人.html"</span>&gt;</span>第三篇，从钢铁侠谈谈如何教你做人<span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
+<p>别人在浏览器上输入你的ip地址就能访问我们电脑上的主页页面，看到的效果如下<br><img src="/2017/07/13/hexo-tutorial2/1.png"><br>然后他就可以根据列出的标题跳转到他感兴趣的内容。<br>于是，我们就完成了搭建博客的全部工作。是的，就这样，做完了。。。教程剧终。。。才怪<br>我们是不能满足这样一个极其简陋的博客，我们需要升级！<br>最为首要的就是，功能上的缺陷，假如，我们现在想写新的文章，比如《美国队长需要有中国梦》的文章<br>那么我们需要新建一个“美国队长需要有中国梦.html”文件，然后利用文本编辑软件，比如sublime在里面写入如下的内容<br><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">title</span>&gt;</span>美国队长需要有中国梦<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">p</span>&gt;</span>作为土生土长的美国人，美国队长需要来一场思想改造，他的美国已经不适合当今的时代了，原因如下<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">p</span>&gt;</span>首先，他太个人英雄主义了。。。以下省略两万字的数落，给曾经的英雄留点面子<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">p</span>&gt;</span>我不想写太多了，反正你懂的，他就是需要来一场中国梦<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
+<p>洋洋洒洒写完后，我们得放进www文件夹下的post文件夹中，我们还得修改我们主页HTML文件，添加链接。变成这样<br><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">title</span>&gt;</span>立而人的博客<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">p</span>&gt;</span>大家好，欢迎参观我的博客<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">p</span>&gt;</span>以下是我所有的博文，博君一笑<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">a</span> 链接=<span class="string">"/post/我心目中的葫芦娃.html"</span>&gt;</span>第一篇，我心目中的葫芦娃<span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">a</span> 链接=<span class="string">"/post/我想成为蝙蝠侠那样的有钱人.html"</span>&gt;</span> 第二篇，我想成为蝙蝠侠那样的有钱人<span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">a</span> 链接=<span class="string">"/post/从钢铁侠谈谈如何教你做人.html"</span>&gt;</span>第三篇，从钢铁侠谈谈如何教你做人<span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">a</span> 链接=<span class="string">"/post/美国队长需要有中国梦.html"</span>&gt;</span>第四篇，美国队长需要有中国梦<span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
+<h1 id="wordpress简介"><a href="#wordpress简介" class="headerlink" title="wordpress简介"></a>wordpress简介</h1><p>我们通过写一些简单的HTML标签来添加文章，不仅颜值低下，需要强调的句子还得手动给html标签添加属性。写完之后，我们还得手动放进www目录下post文件夹，还得修改主页html把新的博客标题列进去，实在是太麻烦了，这时候有一个叫wordpress的东西横空出世来拯救你了，如果你老早就想搭建个人博客，你一定听说过这个东西，安装之后它就会在你的www文件夹里面增加了一个后台网页，你在浏览器中输入你的ip加上/admin然后通过身份验证就能登录后台，在后台你只要按下添加文章按钮，然后，你只需在这个后台网页上填入标题和内容，wordpress就能根据这些内容在post文件夹里面自动生成相应的博客文章的HTML文档，然后他还会在你的博客主页自动添加这篇文章的标题和链接，此外，你还可以在输入内容的时候手动排版，选择字体，颜色等，它也都会自动转化为HTML的各种标签属性，博客文章的颜值瞬间提升，变得花花绿绿。当然，这个后台还能帮助你设计你的博客主页和文章的页面，比如更换皮肤，贴上背景图片等等，这些都是图形界面编辑完成再自动转为html标签，所以，你根本不需要书写html的标签。<br>这么看来，WordPress简直是贴心小棉袄，无所不能啊。确实是这样的，不过这有个前提条件，那就是你的网站服务器上面得安装PHP，因为WordPress的自动化全是PHP代码完成的，这样一来你的服务器需要处理的就不只是静态文件了，我们得搭建PHP环境，还有就是WordPress实在是太大了，太笨重了，很卡很慢。WordPress本质上不是软件，请记住，他不是软件，而是一个建立在你博客上面的网站，帮助你生成博客文档，所以它会占用你的服务器空间。而大多情况下，你得使用专门的网络服务器，那么这限制就比较多了，你得有权限在上面安装PHP，你得有权限使用数据库，而这些都需要花钱。</p>
+<h1 id="Hexo简介"><a href="#Hexo简介" class="headerlink" title="Hexo简介"></a>Hexo简介</h1><p>hexo 的作用跟WordPress差不多，他会帮你自动生成文章的HTML文件，自动生成主页的标题和链接，但是，不同于Wordpress需要安装到服务器上，hexo则不需要，你的博客网站可以放在任何服务器上，而hexo只需装在你用来办公的电脑上就可以了。hexo帮你生成文件的时候，他会自动根据配置把生成的博客HTML文档送到你的服务器上去，这样一来，你的博客网站就纯粹的，只包含静态HTML文档的网站，没有PHP，也不需要什么PHP，更不需要安装其他的什么的文件，这就为我们使用免费的网络服务器提供了可能，比如GitHub，它是不给我们安装任何如PHP这样的东西的，我们只能把HTML文档（还有附属的一些图片啊之类的东西）放上去，供游客游览。在这种情况下，hexo的优势就体现出来了。所以，hexo建立博客的思路跟我们之前所说的手动编辑博客文章的html几乎是同个道理，只是hexo帮我们从繁琐的，无聊的操作中解脱出来了。</p>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+  <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+    <div>坚持原创技术分享，您的支持将鼓励我继续创作！</div>
+    <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+      <span>赏</span>
+    </button>
+    <div id="QR" style="display: none;">
+      
+      
+        <div id="alipay" style="display: inline-block">
+          <img id="alipay_qr" src="/images/myAlipay.png" alt="Lieren Alipay"/>
+          <p>支付宝打赏</p>
+        </div>
+      
+    </div>
+  </div>
+
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/07/13/hexo-tutorial1/" rel="next" title="hexo_tutorial1">
+                <i class="fa fa-chevron-left"></i> hexo_tutorial1
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/07/13/hexo-tutorial3/" rel="prev" title="hexo_tutorial3">
+                hexo_tutorial3 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div id="uyan_frame"></div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/logo.png"
+               alt="Lieren" />
+          <p class="site-author-name" itemprop="name">Lieren</p>
+           
+              <p class="site-description motion-element" itemprop="description"></p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives/">
+                <span class="site-state-item-count">30</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              <a href="/categories/index.html">
+                <span class="site-state-item-count">4</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#本教程的特色"><span class="nav-number">1.</span> <span class="nav-text">本教程的特色</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#博客是什么？"><span class="nav-number">2.</span> <span class="nav-text">博客是什么？</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#wordpress简介"><span class="nav-number">3.</span> <span class="nav-text">wordpress简介</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Hexo简介"><span class="nav-number">4.</span> <span class="nav-text">Hexo简介</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Lieren</span>
+</div>
+
+
+
+<div class="powered-by">
+<i class="fa fa-user-md"></i><span id="busuanzi_container_site_uv">
+  访客数:<span id="busuanzi_value_site_uv"></span>
+</span>
+</div>
+
+<div class="theme-info">
+  <span class="post-count">全站共字</span>
+</div>
+<br/>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.1"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+    
+
+    
+      <!-- UY BEGIN -->
+      <script type="text/javascript" src="http://v2.uyan.cc/code/uyan.js?uid=2139086"></script>
+      <!-- UY END -->
+    
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.1.js"></script>
+  <script>AV.initialize("2nhVd4XLQfttbvmFClpr9JGr-gzGzoHsz", "Vdp3tKCpuqMGjHuvwk4bgI8u");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

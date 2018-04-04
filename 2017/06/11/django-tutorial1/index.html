@@ -102,7 +102,7 @@
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="http://zju.xyz/2017/06/11/django-tutorial1/1.1.png">
 <meta property="og:image" content="http://zju.xyz/2017/06/11/django-tutorial1/1.2.png">
-<meta property="og:updated_time" content="2017-06-11T19:00:15.650Z">
+<meta property="og:updated_time" content="2018-04-03T05:42:39.615Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="django新手教程，真的是写给新手的教程">
 <meta name="twitter:description" content="最近研究了一下Django，本人作为一名伪码农（真实身份是工科男），每次的研究这些跟编程有关的项目都是苦难重重，好在这次坚持了下来，完完整整地做出了一个小项目，于是，我打算把成果都记录下来，做一个高端大气上档次的教程，里面不仅仅是一步步说明如何完成项目，还记录了我研究时候的一些心得体会，既然是一个高大上的教程，当然得有一个高大上的目标，那就是让能看懂教程的人的知识水平限制降到最低，通俗地讲，就是让">
@@ -407,19 +407,25 @@
 <p>本教程到底讲些什么呢，简单的说，就是利用django框架实现一个网络云盘的项目，在实现项目的过程中我们将聊聊一些网络服务的知识，会使用django的很多部件，会了解django设计的精妙之处，最后得出“用django做网站真省事啊”的结论。我们的项目虽小但不简单，有句话怎么说来的，麻雀虽小五脏俱全，我们要做的，不是一个网站那么简单，我们要做一个功能齐全的网络云盘，注意，可不是个人云优盘，我们的云盘要达到某度云的水准（本质上讲，从辩证的角度，确实是差不多的），因为我们的云盘也是支持多用户使用，包括登陆，退出，然后我们的用户面板上要列出用户的资料，提供上传，下载，删除的功能，当然，我们的云盘没有什么会员充值，非会员限速等不是很友好的功能。（你可以在之后的学习中学会添加这些能收费的功能，不过，我建议您的项目在发布初期应该是好用而又免费的，把猪养肥了再宰，这些都是套路啊！）</p>
 <p>我现在假设你是一个会python 的读者了，为了完成本次教程的目标，我希望你能有的硬件：一台电脑，咱们的教程不从怎么安装windows开始，所以我希望你能有一台装windows系统。如果你不想在跟着教程的时候出什么不兼容等属于玄学范畴的幺蛾子的话，我建议您的系统是windows10系统。</p>
 <p>Django学习之旅正式开始：</p>
-<p>首先到python的网站下载python3.5.3：（如果，你已经有了python，只要是python3就行，没必要再装一个python，引起各种版本混乱）</p>
-<p><a href="https://www.python.org/downloads/release/python-353/" target="_blank" rel="noopener">https://www.python.org/downloads/release/python-353/</a></p>
+<p>首先到python的网站下载<a href="https://www.python.org/downloads/release/python-353/" target="_blank" rel="noopener">python3.5.3</a>：（如果，你已经有了python，只要是python3就行，没必要再装一个python，引起各种版本混乱）</p>
 <p>如果，你的系统是32位的话，下载黑色圈着的版本，64位的话就下载红色圈着的</p>
 <img src="/2017/06/11/django-tutorial1/1.1.png">
 <p>安装的时候，ADD Python3.5 to Path一定要勾上（这不是全家桶不用怕，能勾的尽量勾上），这是将python的路径是添加到系统环境变量，这样，你就可以在cmd的黑框里面直接敲入python（如果你之前有python2的话，我建议你先卸载了再装python3，否则，每次运行python就得敲入python3而不是python）来运行python而不用加上python完整的安装路径。</p>
 <img src="/2017/06/11/django-tutorial1/1.2.png">
 <p>这时你再点击install Now 就好了。</p>
 <p>验证成功与否，请按住win+r（同时按住win和r键）调出运行，输入cmd，调出命令黑窗口（请记住如何调出cmd黑窗口，以后经常会用），输入</p>
+<blockquote>
 <p>python -V </p>
-<p>如果返回<br>Python 3.5.3</p>
+</blockquote>
+<p>如果返回</p>
+<blockquote>
+<p>Python 3.5.3</p>
+</blockquote>
 <p>那就是安装成功了。否则的话就杯具了，祖师爷不赏口饭啊（努力重装一把，再不行，就转行吧。。。此处不留爷自有留爷处）</p>
 <p>接下来就是，输入</p>
+<blockquote>
 <p>pip list</p>
+</blockquote>
 <p>如果成功你就会看到已经安装的一些package，如果不成功，就重装python，然后点击Customize Install 把里面的 Pip 勾上，能勾的都勾上。</p>
 <p>总之，到这里我们算是安装好python3了</p>
 

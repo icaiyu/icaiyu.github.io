@@ -93,19 +93,17 @@
 
 
 
-<meta name="description" content="非常遗憾，注册需要用到的讲解员，django是不内置这样的讲解员的，你必须自己在讲解员名单里面添加，所以，如果你只是小范围使用的话，就在管理页面手动添加用户就好了，不要什么注册系统，本章就照顾一下有雄心壮志的同学，他们肯定是需要制作面向广大群众的系统的，所以会员注册肯定要搞起来。我们这里讲解如何制作用户的注册页面，我们先理一下逻辑，一个新用户登陆我们的页面，他首先看到的应该的登录页面，如果他没有账">
+<meta name="description" content="非常遗憾,注册需要用到的view函数在django里面是不内置的,你必须自己在view函数名单里面自己添加,所以,如果你只是小范围使用的话,使用manage.py文件就可以手动添加用户就好了,不要什么注册系统,本章就照顾一下有雄心壮志的同学,他们肯定是需要制作面向广大群众的系统的,所以会员注册肯定要搞起来。我们这里讲解如何制作用户的注册页面,我们先理一下逻辑,一个新用户登陆我们的页面,他首先看到的">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Django新手教程16，用户注册页面">
+<meta property="og:title" content="Django新手教程16,用户注册页面">
 <meta property="og:url" content="http://zju.xyz/2017/06/12/django-tutorial16/index.html">
 <meta property="og:site_name" content="myCabine">
-<meta property="og:description" content="非常遗憾，注册需要用到的讲解员，django是不内置这样的讲解员的，你必须自己在讲解员名单里面添加，所以，如果你只是小范围使用的话，就在管理页面手动添加用户就好了，不要什么注册系统，本章就照顾一下有雄心壮志的同学，他们肯定是需要制作面向广大群众的系统的，所以会员注册肯定要搞起来。我们这里讲解如何制作用户的注册页面，我们先理一下逻辑，一个新用户登陆我们的页面，他首先看到的应该的登录页面，如果他没有账">
+<meta property="og:description" content="非常遗憾,注册需要用到的view函数在django里面是不内置的,你必须自己在view函数名单里面自己添加,所以,如果你只是小范围使用的话,使用manage.py文件就可以手动添加用户就好了,不要什么注册系统,本章就照顾一下有雄心壮志的同学,他们肯定是需要制作面向广大群众的系统的,所以会员注册肯定要搞起来。我们这里讲解如何制作用户的注册页面,我们先理一下逻辑,一个新用户登陆我们的页面,他首先看到的">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/6224338-13c1ea02e36fdcd4.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
-<meta property="og:updated_time" content="2017-07-05T21:55:39.876Z">
+<meta property="og:updated_time" content="2018-04-03T16:23:09.963Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Django新手教程16，用户注册页面">
-<meta name="twitter:description" content="非常遗憾，注册需要用到的讲解员，django是不内置这样的讲解员的，你必须自己在讲解员名单里面添加，所以，如果你只是小范围使用的话，就在管理页面手动添加用户就好了，不要什么注册系统，本章就照顾一下有雄心壮志的同学，他们肯定是需要制作面向广大群众的系统的，所以会员注册肯定要搞起来。我们这里讲解如何制作用户的注册页面，我们先理一下逻辑，一个新用户登陆我们的页面，他首先看到的应该的登录页面，如果他没有账">
-<meta name="twitter:image" content="http://upload-images.jianshu.io/upload_images/6224338-13c1ea02e36fdcd4.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta name="twitter:title" content="Django新手教程16,用户注册页面">
+<meta name="twitter:description" content="非常遗憾,注册需要用到的view函数在django里面是不内置的,你必须自己在view函数名单里面自己添加,所以,如果你只是小范围使用的话,使用manage.py文件就可以手动添加用户就好了,不要什么注册系统,本章就照顾一下有雄心壮志的同学,他们肯定是需要制作面向广大群众的系统的,所以会员注册肯定要搞起来。我们这里讲解如何制作用户的注册页面,我们先理一下逻辑,一个新用户登陆我们的页面,他首先看到的">
 
 
 
@@ -139,7 +137,7 @@
 
 
 
-  <title>Django新手教程16，用户注册页面 | myCabine</title>
+  <title>Django新手教程16,用户注册页面 | myCabine</title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -286,7 +284,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">Django新手教程16，用户注册页面</h1>
+          <h1 class="post-title" itemprop="name headline">Django新手教程16,用户注册页面</h1>
         
 
         <div class="post-meta">
@@ -338,7 +336,7 @@
 
           
           
-             <span id="/2017/06/12/django-tutorial16/" class="leancloud_visitors" data-flag-title="Django新手教程16，用户注册页面">
+             <span id="/2017/06/12/django-tutorial16/" class="leancloud_visitors" data-flag-title="Django新手教程16,用户注册页面">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -397,20 +395,27 @@
       
 
       
-        <p>非常遗憾，注册需要用到的讲解员，django是不内置这样的讲解员的，你必须自己在讲解员名单里面添加，所以，如果你只是小范围使用的话，就在管理页面手动添加用户就好了，不要什么注册系统，本章就照顾一下有雄心壮志的同学，他们肯定是需要制作面向广大群众的系统的，所以会员注册肯定要搞起来。<br>我们这里讲解如何制作用户的注册页面，我们先理一下逻辑，一个新用户登陆我们的页面，他首先看到的应该的登录页面，如果他没有账号，那么他需要点击一个注册的按钮，前往注册页面，所以，跟往常一样，我们需要三样东西：</p>
+        <p>非常遗憾,注册需要用到的view函数在django里面是不内置的,你必须自己在view函数名单里面自己添加,所以,如果你只是小范围使用的话,使用manage.py文件就可以手动添加用户就好了,不要什么注册系统,本章就照顾一下有雄心壮志的同学,他们肯定是需要制作面向广大群众的系统的,所以会员注册肯定要搞起来。<br>我们这里讲解如何制作用户的注册页面,我们先理一下逻辑,一个新用户登陆我们的页面,他首先看到的应该的登录页面,如果他没有账号,那么他需要点击一个注册的按钮,前往注册页面,所以,跟往常一样,我们需要三样东西：</p>
 <ol>
-<li>设置URL，这个不必多说，</li>
-<li>聘请讲解员，他负责将注册页面的用户资料存进数据库。</li>
-<li>制作html文件，这个是用户注册时看到的页面，这上面应该有一个HTML表单用来收集用户的信息，比如用户名和密码。<br>所以，我们首先需要打开myCloud目录下的urls.py文件<br>填入<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">url(<span class="string">r'^signup/$'</span>, jiangjieyuan_mingdan.signup, name=<span class="string">'signup'</span>),</span><br></pre></td></tr></table></figure>
+<li>设置URL,这个不必多说,</li>
+<li>聘请view函数,他负责将注册页面的用户资料存进数据库。</li>
+<li>制作html文件,这个是用户注册时看到的页面,这上面应该有一个HTML表单用来收集用户的信息,比如用户名和密码。<br>所以,我们首先需要打开myCloud目录下的urls.py文件<br>填入<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">url(<span class="string">r'^signup/$'</span>, jiangjieyuan_mingdan.signup, name=<span class="string">'signup'</span>),</span><br></pre></td></tr></table></figure>
 </li>
 </ol>
-<p><img src="http://upload-images.jianshu.io/upload_images/6224338-13c1ea02e36fdcd4.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="image.png"><br>我们的讲解员的逻辑应该是怎么样的呢？首先他要对request的方式做一下判断，如果是get，那么说明游客只是跳转到了注册页面，准备填写资料，因此，我们应该渲染一个HTML表单嵌入到signup.html，而这个表单django已经帮我们设计好了，我们就不用自己写以下这些乱七八糟的东西<br><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">'text'</span> <span class="attr">name</span>=<span class="string">username/</span>&gt;</span></span><br><span class="line">...</span><br></pre></td></tr></table></figure></p>
-<p>我们只需要<br>from django.contrib.auth.forms import UserCreationForm<br>然后<br>form = UserCreationForm()<br>这个form就包含了用户注册需要的东西，比如用户名，密码之类<br>我们只要把这个form当做是讲解语嵌入到signup.html里面。<br>return render(request, ‘registration/signup.html’, {‘form_jiangjieyu’: form})<br>如果request的方式是post，说明用户已经填好资料了，那么我们首先验证资料是否有效。<br>if form.is_valid():<br>有效的话，我们就使用<br>form.save()<br>这时就把新注册的用户添加到用户库里面去了，然后我们希望，接下来就以这名新用户的名义转到主页上去，所以，我们需要用这个用户名和密码登录一下<br>username = form.cleaned_data.get(‘username’)<br>userpassword = form.cleaned_data.get(‘password1’)<br>user = authenticate(username=username, password=userpassword)<br>login(request, user)<br>return redirect(‘/‘)<br>这名讲解员总的代码是<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">signup</span><span class="params">(request)</span>:</span></span><br><span class="line">    <span class="keyword">if</span> request.method == <span class="string">'POST'</span>:</span><br><span class="line">        form = UserCreationForm(request.POST)</span><br><span class="line">        <span class="keyword">if</span> form.is_valid():</span><br><span class="line">            form.save()</span><br><span class="line">            username = form.cleaned_data.get(<span class="string">'username'</span>)</span><br><span class="line">            userpassword = form.cleaned_data.get(<span class="string">'password1'</span>)</span><br><span class="line">            user = authenticate(username=username, password=userpassword)</span><br><span class="line">            login(request, user)</span><br><span class="line">            <span class="keyword">return</span> redirect(<span class="string">'/'</span>)</span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        form = UserCreationForm()</span><br><span class="line">    <span class="keyword">return</span> render(request, <span class="string">'registration/signup.html'</span>, &#123;<span class="string">'form_jiangjieyu'</span>: form&#125;)</span><br></pre></td></tr></table></figure></p>
-<p>最后是制作相关的signup.html<br>我们在templates下面的registration文件夹里面新建一个signup.html<br>里面填入<br><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">h1</span>&gt;</span>Sign up<span class="tag">&lt;/<span class="name">h1</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">form</span> <span class="attr">method</span>=<span class="string">"post"</span>&gt;</span></span><br><span class="line">&#123;% csrf_token %&#125;</span><br><span class="line">&#123;&#123; form_jiangjieyu &#125;&#125;</span><br><span class="line"><span class="tag">&lt;<span class="name">button</span> <span class="attr">type</span>=<span class="string">"submit"</span>&gt;</span>Sign up<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">form</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
-<p>然后你就会发现这个页面有些杂乱，我们把form_jiangjieyu渲染得好看一些，以 HTML 的&lt; p &gt; 标签来渲染每一行的内容，所以，我们使用form_jiangjieyu.as_p 来渲染这个注册表单<br><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">h1</span>&gt;</span>Sign up<span class="tag">&lt;/<span class="name">h1</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">form</span> <span class="attr">method</span>=<span class="string">"post"</span>&gt;</span></span><br><span class="line">&#123;% csrf_token %&#125;</span><br><span class="line">&#123;&#123; form_jiangjieyu &#125;&#125;</span><br><span class="line"><span class="tag">&lt;<span class="name">button</span> <span class="attr">type</span>=<span class="string">"submit"</span>&gt;</span>Sign up<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">form</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
-<p>然后我们在登录的页面添加一个到注册页面的链接。所以，我们打开login.html文件，添加<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;a href=&apos;/signup.html&apos;&gt;注册&lt;/a&gt;</span><br></pre></td></tr></table></figure></p>
+<p>我们的view函数的逻辑应该是怎么样的呢？首先他要对request的方式做一下判断,如果是get,那么说明游客只是跳转到了注册页面,准备填写资料,因此,我们应该渲染一个HTML表单嵌入到signup.html,而这个表单django已经帮我们设计好了,我们就不用自己写以下这些乱七八糟的东西<br><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">'text'</span> <span class="attr">name</span>=<span class="string">username/</span>&gt;</span></span><br><span class="line">...</span><br></pre></td></tr></table></figure></p>
+<p>我们只需要</p>
+<blockquote>
+<p>from django.contrib.auth.forms import UserCreationForm</p>
+</blockquote>
+<p>然后</p>
+<blockquote>
+<p>form = UserCreationForm()</p>
+</blockquote>
+<p>这个form就包含了用户注册需要的东西,比如用户名,密码之类<br>我们只要把这个form嵌入到signup.html里面。<br>return render(request, ‘registration/signup.html’, {‘form’: form})<br>如果request的方式是post,说明用户已经填好资料了,那么我们首先验证资料是否有效。<br>如果有效就把新注册的用户添加到用户库里面去,然后我们希望,接下来就以这名新用户的名义转到主页上去。<br>这名view函数总的代码是<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">signup</span><span class="params">(request)</span>:</span></span><br><span class="line">    <span class="keyword">if</span> request.method == <span class="string">'POST'</span>:</span><br><span class="line">        form = UserCreationForm(request.POST)</span><br><span class="line">        <span class="keyword">if</span> form.is_valid():</span><br><span class="line">            form.save()</span><br><span class="line">            username = form.cleaned_data.get(<span class="string">'username'</span>)</span><br><span class="line">            userpassword = form.cleaned_data.get(<span class="string">'password1'</span>)</span><br><span class="line">            user = authenticate(username=username, password=userpassword)</span><br><span class="line">            login(request, user)</span><br><span class="line">            <span class="keyword">return</span> redirect(<span class="string">'/'</span>)</span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        form = UserCreationForm()</span><br><span class="line">    <span class="keyword">return</span> render(request, <span class="string">'registration/signup.html'</span>, &#123;<span class="string">'form_jiangjieyu'</span>: form&#125;)</span><br></pre></td></tr></table></figure></p>
+<p>最后是制作相关的signup.html<br>我们在templates下面的registration文件夹里面新建一个signup.html<br>里面填入<br><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">h1</span>&gt;</span>Sign up<span class="tag">&lt;/<span class="name">h1</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">form</span> <span class="attr">method</span>=<span class="string">"post"</span>&gt;</span></span><br><span class="line">&#123;% csrf_token %&#125;</span><br><span class="line">&#123;&#123; form &#125;&#125;</span><br><span class="line"><span class="tag">&lt;<span class="name">button</span> <span class="attr">type</span>=<span class="string">"submit"</span>&gt;</span>Sign up<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">form</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
+<p>然后你就会发现这个页面有些杂乱,我们把form_jiangjieyu渲染得好看一些,以 HTML 的&lt; p &gt; 标签来渲染每一行的内容,所以,我们使用form.as_p 来渲染这个注册表单<br>然后我们在登录的页面添加一个到注册页面的链接。所以,我们打开login.html文件,添加<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;a href=&apos;/signup.html&apos;&gt;注册&lt;/a&gt;</span><br></pre></td></tr></table></figure></p>
 <p>顺便也把form的渲染方式变成as_p模式<br>最后的代码是<br><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">h1</span>&gt;</span>Login<span class="tag">&lt;/<span class="name">h1</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">form</span> <span class="attr">method</span>=<span class="string">"post"</span>&gt;</span></span><br><span class="line">&#123;% csrf_token %&#125;</span><br><span class="line">&#123;&#123; form.as_p &#125;&#125;</span><br><span class="line"><span class="tag">&lt;<span class="name">button</span> <span class="attr">type</span>=<span class="string">"submit"</span>&gt;</span>Login<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">'/signup.html'</span>&gt;</span>注册<span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">form</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
-<p>运行服务器，我们输入172.20.10.4，如果你之前没有记住密码，我们就会自动转到172.20.10.4/login<br>如果，我们不使用刚刚的超级用户，我们可以点击注册跳转到<br>172.20.10.4/signup<br>进行注册，你会发现上面有不少django提示的注册注意事项，这些你都是可以自己定制的，自己慢慢琢磨去吧。<br>我们注册好用户，它就会以刚注册的用户登录主页，这时你会发现主页没有什么文件，因为之前存的文件都是admin的。<br>这时你可以存一些文件试试。<br>然后，退出，登录admin，这时主页上看不到刚刚普通用户的文档，我们可以登录到管理页面<br>172.20.10.4/admin/<br>你可以发现USER那里面有了新的成员，那就是刚刚注册的用户。<br>这说明我们的用户注册系统搭好了。<br>实际上，我们也可以在这个管理页面管理所有上传的文档，这些就不讲了。</p>
+<p>运行服务器,我们输入172.20.10.4,如果浏览器之前没有记住密码,就会自动转到172.20.10.4/login<br>这次我们不使用刚刚的超级用户登录,我们可以点击注册跳转到<br>172.20.10.4/signup<br>进行注册,你会发现上面有不少django提示的注册注意事项,这些你都是可以自己定制的,自己慢慢琢磨去吧。<br>我们注册好用户,它就会以刚注册的用户登录主页,这时你会发现主页没有什么文件,因为之前存的文件都是admin的。<br>这时你可以存一些文件试试。<br>然后,退出,登录admin,这时主页上看不到刚刚普通用户的文档,我们可以登录到管理页面<br>172.20.10.4/admin/<br>你可以发现USER那里面有了新的成员,那就是刚刚注册的用户。<br>这说明我们的用户注册系统搭好了。<br>实际上,我们也可以在这个管理页面管理所有上传的文档,这些就不讲了。</p>
 
       
     </div>
@@ -463,8 +468,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2017/06/12/django-tutorial15/" rel="next" title="Django新手教程15，划分私人空间">
-                <i class="fa fa-chevron-left"></i> Django新手教程15，划分私人空间
+              <a href="/2017/06/12/django-tutorial15/" rel="next" title="Django新手教程15,划分私人空间">
+                <i class="fa fa-chevron-left"></i> Django新手教程15,划分私人空间
               </a>
             
           </div>
@@ -473,8 +478,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2017/06/12/django-tutorial17/" rel="prev" title="Django新手教程17，以MVC话题结束我们的教程">
-                Django新手教程17，以MVC话题结束我们的教程 <i class="fa fa-chevron-right"></i>
+              <a href="/2017/06/12/django-tutorial17/" rel="prev" title="Django新手教程17,以MVC话题结束我们的教程">
+                Django新手教程17,以MVC话题结束我们的教程 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>

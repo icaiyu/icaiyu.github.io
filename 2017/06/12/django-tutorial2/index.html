@@ -108,7 +108,7 @@
 <meta property="og:image" content="http://zju.xyz/2017/06/12/django-tutorial2/2.6.png">
 <meta property="og:image" content="http://zju.xyz/2017/06/12/django-tutorial2/2.7.png">
 <meta property="og:image" content="http://zju.xyz/2017/06/12/django-tutorial2/2.8.png">
-<meta property="og:updated_time" content="2017-06-11T19:00:07.913Z">
+<meta property="og:updated_time" content="2018-04-03T05:44:45.655Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="django新手教程2,搭建虚拟环境">
 <meta name="twitter:description" content="接下来，我们并不急于安装django，我们先安装一个叫virtualenvwrapper的东西（它里面集合了virtualenv）这个东西可以帮我们新建，启用，关闭虚拟环境，我们已经安装好了python，如果直接就安装各种package，可能会造成系统混乱，因为package之间会有依赖的，我杜撰一个比方，你现在直接装django，他会依赖其他的包（开发django的人也不会总想着重新造轮子，有些">
@@ -404,14 +404,55 @@
       
 
       
-        <p>接下来，我们并不急于安装django，我们先安装一个叫virtualenvwrapper的东西（它里面集合了virtualenv）这个东西可以帮我们新建，启用，关闭虚拟环境，我们已经安装好了python，如果直接就安装各种package，可能会造成系统混乱，因为package之间会有依赖的，我杜撰一个比方，你现在直接装django，他会依赖其他的包（开发django的人也不会总想着重新造轮子，有些功能既然别人写好了，拿来用就是了），比如pytz这个包（你装django的时候如果你的系统没有安装pytz，他会自动帮你装上的），django依赖的是pytz的这个2017.2版本的某个功能，然后假如某一天，你要做别的项目，比如flask，假如它依赖的是pytz2017.3（我随口编的，不存在这个版本的pytz包）那么你安装flask的时候就会将pytz自动升级为pytz2017.3.而这个新版本的pytz可能取消了django所依赖的功能或者修改了接口，那么，你再运行django就悲剧了，对于新手来说，这种悲剧就像玄学一样，前两天django还跑地好好的，代码啥的没改，咋今天就不行了呢？这个例子虽然是杜撰的，但是，却很有可能存在，而且情况可能会更复杂，所以，我们需要保证系统的纯净，从上面的例子我们可以看到，既然我们决定用python做django项目，就别再去搞其他的比如flask什么项目了，这样就不会出现玄学问题，但是，只学django怎么行呢，大家都是孜孜不倦的好孩子，将来肯定不会满足于django，肯定会往什么机器学习，什么大数据那方面蹭一蹭，所以，我们就需要用到虚拟环境了，python刚装好，环境那么纯洁，你舍得污染吗？这肯定不行啊，所以，我们需要复制一份python的运行环境，这个复制的环境就叫虚拟环境，我们在这个虚拟环境里装django，装它依赖的包，反正随便整，原生的python环境还是保持着纯洁的心灵。这时你还想学习flask，你可以继续复制一份原始的python环境，然后这个作为第二个虚拟环境，在里面装flask和相关的package，这些环境之间互不干扰，哪天虚拟环境玩崩了，直接删除就是，简单得很，而要是原始环境玩崩了，很多人甚至都不知道怎样才能卸载干净，所以咱们尽量别在原生环境上整项目。<br>我们虽然是新手，像使用虚拟环境这样的习惯还是要培养的，将来肯定受益良多，不会被各种系统兼容，版本混乱等破事搞得焦头烂额。<br>为了安装虚拟环境管理工具，我们只需打开cmd输入如下的语句(注意尾巴的win不能少)<br>pip install virtualenvwrapper-win<br>实际起作用的virtualenv，它能够复制原始环境，做这些工作，但是，这玩意用户界面设计不好，直接用比较反人类，于是就有大神出了virtualenvwrapper将virtualenv包装一下，使用起来更加方便（没错社区大神就是这么牛逼，绝不允许反人类的存在），而且，你安装virtualenvwrapper-win，他会自动安装vritualenv，非常省心。<br>这时你还不能直接使用这个工具，因为，你需要告诉这个工具，你要把虚拟环境复制到什么地方，因此，需要添加系统环境变量，首先，我们在D盘根目录新建一个叫’py_env’的文件夹来存放我们的虚拟环境。<br>接着，找到一个’我的电脑‘的图标，右键，选择属性<br><img src="/2017/06/12/django-tutorial2/2.1.png"><br>选择高级系统设置<br><img src="/2017/06/12/django-tutorial2/2.2.png"><br>选择环境变量<br><img src="/2017/06/12/django-tutorial2/2.3.png"><br>选择新建<br><img src="/2017/06/12/django-tutorial2/2.4.png"><br>变量名输入： WORKON_HOME<br>变量值，可以通过浏览目录，选择我们刚刚新建的py_env，确定就可以了。<br><img src="/2017/06/12/django-tutorial2/2.5.png"><br>新建好系统环境变量，一路确定，应用。<br>关掉cmd，再重新开一个新的cmd，这时新添加的系统环境变量就可以使用了。<br>我们输入（下面的jdanog_env是我为虚拟环境起的名字，你可以随意起，不过要记住它，否则就得跑到我们之前新建的py_env目录下看我们装了哪些虚拟环境）<br>mkvirtualenv django_env</p>
+        <p>接下来，我们并不急于安装django，我们先安装一个叫virtualenvwrapper的东西（它里面集合了virtualenv）这个东西可以帮我们新建，启用，关闭虚拟环境，我们已经安装好了python，如果直接就安装各种package，可能会造成系统混乱，因为package之间会有依赖的，我杜撰一个比方，你现在直接装django，他会依赖其他的包（开发django的人也不会总想着重新造轮子，有些功能既然别人写好了，拿来用就是了），比如pytz这个包（你装django的时候如果你的系统没有安装pytz，他会自动帮你装上的），django依赖的是pytz的这个2017.2版本的某个功能，然后假如某一天，你要做别的项目，比如flask，假如它依赖的是pytz2017.3（我随口编的，不存在这个版本的pytz包）那么你安装flask的时候就会将pytz自动升级为pytz2017.3.而这个新版本的pytz可能取消了django所依赖的功能或者修改了接口，那么，你再运行django就悲剧了，对于新手来说，这种悲剧就像玄学一样，前两天django还跑地好好的，代码啥的没改，咋今天就不行了呢？这个例子虽然是杜撰的，但是，却很有可能存在，而且情况可能会更复杂，所以，我们需要保证系统的纯净，从上面的例子我们可以看到，既然我们决定用python做django项目，就别再去搞其他的比如flask什么项目了，这样就不会出现玄学问题，但是，只学django怎么行呢，大家都是孜孜不倦的好孩子，将来肯定不会满足于django，肯定会往什么机器学习，什么大数据那方面蹭一蹭，所以，我们就需要用到虚拟环境了，python刚装好，环境那么纯洁，你舍得污染吗？这肯定不行啊，所以，我们需要复制一份python的运行环境，这个复制的环境就叫虚拟环境，我们在这个虚拟环境里装django，装它依赖的包，反正随便整，原生的python环境还是保持着纯洁的心灵。这时你还想学习flask，你可以继续复制一份原始的python环境，然后这个作为第二个虚拟环境，在里面装flask和相关的package，这些环境之间互不干扰，哪天虚拟环境玩崩了，直接删除就是，简单得很，而要是原始环境玩崩了，很多人甚至都不知道怎样才能卸载干净，所以咱们尽量别在原生环境上整项目。<br>我们虽然是新手，像使用虚拟环境这样的习惯还是要培养的，将来肯定受益良多，不会被各种系统兼容，版本混乱等破事搞得焦头烂额。<br>为了安装虚拟环境管理工具，我们只需打开cmd输入如下的语句(注意尾巴的win不能少)</p>
+<blockquote>
+<p>pip install virtualenvwrapper-win  </p>
+</blockquote>
+<p>实际起作用的virtualenv，它能够复制原始环境，做这些工作，但是，这玩意用户界面设计不好，直接用比较反人类，于是就有大神出了virtualenvwrapper将virtualenv包装一下，使用起来更加方便（没错社区大神就是这么牛逼，绝不允许反人类的存在），而且，你安装virtualenvwrapper-win，他会自动安装vritualenv，非常省心。<br>这时你还不能直接使用这个工具，因为，你需要告诉这个工具，你要把虚拟环境复制到什么地方，因此，需要添加系统环境变量，首先，我们在D盘根目录新建一个叫’py_env’的文件夹来存放我们的虚拟环境。<br>接着，找到一个’我的电脑‘的图标，右键，选择属性<br><img src="/2017/06/12/django-tutorial2/2.1.png"><br>选择高级系统设置<br><img src="/2017/06/12/django-tutorial2/2.2.png"><br>选择环境变量<br><img src="/2017/06/12/django-tutorial2/2.3.png"><br>选择新建<br><img src="/2017/06/12/django-tutorial2/2.4.png"><br>变量名输入： WORKON_HOME<br>变量值，可以通过浏览目录，选择我们刚刚新建的py_env，确定就可以了。<br><img src="/2017/06/12/django-tutorial2/2.5.png"><br>新建好系统环境变量，一路确定，应用。<br>关掉cmd，再重新开一个新的cmd，这时新添加的系统环境变量就可以使用了。<br>我们输入（下面的jdanog_env是我为虚拟环境起的名字，你可以随意起，不过要记住它，否则就得跑到我们之前新建的py_env目录下看我们装了哪些虚拟环境）</p>
+<blockquote>
+<p>mkvirtualenv django_env</p>
+</blockquote>
 <img src="/2017/06/12/django-tutorial2/2.6.png">
 <p>你就会看到提示说，新的python运行器已经存到py_env下的django_env目录了。<br>这时你可以看到cmd目录的前面多了一个(django_env)，</p>
 <img src="/2017/06/12/django-tutorial2/2.7.png">
-<p>说明我们正在使用django_env虚拟环境（或者说，django_env已激活），这里为了帮助新手理解虚拟环境，我多说几句，所谓虚拟环境，并不是要我们把所需要的资源都放到django_env的目录下，实际上，这个目录里面的东西跟C:/programs files/python35/（你python的安装目录）差不多，你的代码可以放在任何地方（一般来说，也没人会把代码放到C:/programs files/python35/里面，同理，我们的django项目代码一般也不会放到django_env目录下面，而是任意一个地方，比如，我在D盘，新建一个python_project的目录，把代码放进去，当然我们要运行该项目的代码时，我们就要用到django_env的环境，所以需要django_env处于激活状态，这时，运行你的代码的编译器是处于django_env目录下的那个，而不是原生的编译器，因为我们要把django相关的package装到虚拟环境中，所以，以后如果你在原生环境下跑django项目的代码就会出错，因为原生环境并没有装django相关的package<br>在django_env激活的状态下，我们输入<br>pip list</p>
+<p>说明我们正在使用django_env虚拟环境（或者说，django_env已激活），这里为了帮助新手理解虚拟环境，我多说几句，所谓虚拟环境，并不是要我们把所需要的资源都放到django_env的目录下，实际上，这个目录里面的东西跟C:/programs files/python35/（你python的安装目录）差不多，你的代码可以放在任何地方（一般来说，也没人会把代码放到C:/programs files/python35/里面，同理，我们的django项目代码一般也不会放到django_env目录下面，而是任意一个地方，比如，我在D盘，新建一个python_project的目录，把代码放进去，当然我们要运行该项目的代码时，我们就要用到django_env的环境，所以需要django_env处于激活状态，这时，运行你的代码的编译器是处于django_env目录下的那个，而不是原生的编译器，因为我们要把django相关的package装到虚拟环境中，所以，以后如果你在原生环境下跑django项目的代码就会出错，因为原生环境并没有装django相关的package<br>在django_env激活的状态下，我们输入</p>
+<blockquote>
+<p>pip list</p>
+</blockquote>
 <img src="/2017/06/12/django-tutorial2/2.8.png">
-<p>你会看到这里列出来的package比之前原生环境少很多，因为在复制原生环境成虚拟环境的时候，为了让环境更加清爽，很多package就不复制过来了，其实是在鼓励你自己安装需要的package（原来自带的package版本可能和你做项目所需要的版本有冲突，又或者有些自带package确实用不上），我们这次是做django，那么，我们首先要安装的就是django这个package。请再次确认django_env是激活状态，也就是，你的cmd的提示符前面有(django_env)的字样，否则一不小心装到原生环境里面不就翻车了么。确认完毕，请输入<br>pip install django<br>稍等片刻就安装成功了，这时再<br>pip list</p>
-<p>仔细看一下，比之前多了django和pytz，说明django是依赖pytz这个包的，至于依赖哪些功能，咱们就别管了。<br>我们的虚拟环境django_env处于激活状态，所有的python程序都是由虚拟环境的编译器执行的，如果我们想退出虚拟环境，只要敲入<br>deactivate<br>就可以退出虚拟环境了，这时cmd提示符前面的（django_env）消失了，我们又回到了原生环境<br>这时再运行<br>pip list<br>你找不到django的，因为，我们的原生环境很纯洁，并没有安装django，相应地你运行<br>django-admin startproject mysite<br>会出现错误。<br>假设，你现在对学习django失去了兴趣，想学flask，所以，首先要为flask新建一个虚拟环境，那么你可以运行<br>mkvirtualenv flask_env (注这个flask_env是我随便起的，你也可以随便起，但是你要记住这个名字，否则要到py_env看有哪些虚拟环境)<br>来创建新的虚拟环境，创建后自动激活，这时，你可以安装flask。假如它依赖pytz的其他版本，那就装其他版本，和我们之前装在django_env的pytz互不干涉。然后你发现flask没人像我写django教程那样详细讲解如何搭建环境和虚拟环境，于是，你从门外到放弃，敲入<br>deactivate<br>退出flask_env环境，想要再回到django的怀抱，敲入<br>workon django_env<br>表示work on the django我们就又进入django_env的虚拟环境了，一切都是那么亲切，等等，先<br>deactivate<br>回到原生环境，我们要掩盖刚刚三秒钟放弃flask的尴尬，敲入<br>rmvirtualenv flask_env<br>表示remove virtual environment，删除该虚拟环境（为什么要退回到原生环境才能删除flask_env呢，因为，搞这些事情的是virtualenvwrapper，而这东西是安装在原生环境上的，所以要在原生环境上做这些事情，比如创建虚拟环境，删除虚拟环境，激活虚拟环境等，你在虚拟环境上做这些是无效的，因为虚拟环境并没有安装virtualenvwrapper的包，也不建议你在虚拟 环境里再搞这套了，咱们不玩俄罗斯套娃），最后，一切都是神不知鬼不觉，其他的一切都没有受到影响。虚拟环境的管理真的太方便了，这道理这社会上是行不通的，俗话说要想人不知除非己莫为，偷吃想抹嘴哪有像删除虚拟环境那样简单干净，迟早会露馅的。<br>现在，美滋滋地，放心地，敲入<br>workon django_env<br>继续我们的项目吧。</p>
+<p>你会看到这里列出来的package比之前原生环境少很多，因为在复制原生环境成虚拟环境的时候，为了让环境更加清爽，很多package就不复制过来了，其实是在鼓励你自己安装需要的package（原来自带的package版本可能和你做项目所需要的版本有冲突，又或者有些自带package确实用不上），我们这次是做django，那么，我们首先要安装的就是django这个package。请再次确认django_env是激活状态，也就是，你的cmd的提示符前面有(django_env)的字样，否则一不小心装到原生环境里面不就翻车了么。确认完毕，请输入<br>pip install django<br>稍等片刻就安装成功了，这时再</p>
+<blockquote>
+<p>pip list</p>
+</blockquote>
+<p>仔细看一下，比之前多了django和pytz，说明django是依赖pytz这个包的，至于依赖哪些功能，咱们就别管了。<br>我们的虚拟环境django_env处于激活状态，所有的python程序都是由虚拟环境的编译器执行的，如果我们想退出虚拟环境，只要敲入<br>deactivate<br>就可以退出虚拟环境了，这时cmd提示符前面的（django_env）消失了，我们又回到了原生环境<br>这时再运行</p>
+<blockquote>
+<p>pip list</p>
+</blockquote>
+<p>你找不到django的，因为，我们的原生环境很纯洁，并没有安装django，相应地你运行</p>
+<blockquote>
+<p>django-admin startproject mysite</p>
+</blockquote>
+<p>会出现错误。<br>假设，你现在对学习django失去了兴趣，想学flask，所以，首先要为flask新建一个虚拟环境，那么你可以运行<br>mkvirtualenv flask_env (注这个flask_env是我随便起的，你也可以随便起，但是你要记住这个名字，否则要到py_env看有哪些虚拟环境)<br>来创建新的虚拟环境，创建后自动激活，这时，你可以安装flask。假如它依赖pytz的其他版本，那就装其他版本，和我们之前装在django_env的pytz互不干涉。然后你发现flask没人像我写django教程那样详细讲解如何搭建环境和虚拟环境，于是，你从门外到放弃，敲入</p>
+<blockquote>
+<p>deactivate</p>
+</blockquote>
+<p>退出flask_env环境，想要再回到django的怀抱，敲入</p>
+<blockquote>
+<p>workon django_env</p>
+</blockquote>
+<p>表示work on the django我们就又进入django_env的虚拟环境了，一切都是那么亲切，等等，先</p>
+<blockquote>
+<p>deactivate</p>
+</blockquote>
+<p>回到原生环境，我们要掩盖刚刚三秒钟放弃flask的尴尬，敲入</p>
+<blockquote>
+<p>rmvirtualenv flask_env</p>
+</blockquote>
+<p>表示remove virtual environment，删除该虚拟环境（为什么要退回到原生环境才能删除flask_env呢，因为，搞这些事情的是virtualenvwrapper，而这东西是安装在原生环境上的，所以要在原生环境上做这些事情，比如创建虚拟环境，删除虚拟环境，激活虚拟环境等，你在虚拟环境上做这些是无效的，因为虚拟环境并没有安装virtualenvwrapper的包，也不建议你在虚拟 环境里再搞这套了，咱们不玩俄罗斯套娃），最后，一切都是神不知鬼不觉，其他的一切都没有受到影响。虚拟环境的管理真的太方便了，这道理这社会上是行不通的，俗话说要想人不知除非己莫为，偷吃想抹嘴哪有像删除虚拟环境那样简单干净，迟早会露馅的。<br>现在，美滋滋地，放心地，敲入</p>
+<blockquote>
+<p>workon django_env</p>
+</blockquote>
+<p>继续我们的项目吧。</p>
 <p>自此，我们的开发环境差不多就搭好了。啰嗦讲了很多，但是，作为新手，我深刻体会到，新手学编程，最怕的就是搭环境。</p>
 
       
@@ -475,8 +516,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2017/06/12/django-tutorial3/" rel="prev" title="django新手教程3,从URL开始，聊聊网络服务 (1)">
-                django新手教程3,从URL开始，聊聊网络服务 (1) <i class="fa fa-chevron-right"></i>
+              <a href="/2017/06/12/django-tutorial3/" rel="prev" title="django新手教程3,从URL开始,聊聊网络服务 (1)">
+                django新手教程3,从URL开始,聊聊网络服务 (1) <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>

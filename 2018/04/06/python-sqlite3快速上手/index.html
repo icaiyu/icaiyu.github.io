@@ -100,7 +100,7 @@
 <meta property="og:site_name" content="myCabine">
 <meta property="og:description" content="说明:本人最近翻译sqlite3的python API文档。该文档较为详细地介绍了sqlite3的特性，但是，我认为对于初学者来说，很多内容其实都用不到，因此，我在此写一个较为简短的教程，总结主要的内容，以便初学者能够快速上手。 sqlite3 简介sqlite3其实就是一个轻量化的sql数据库，类似mysql，如果你对mysql不熟悉，也无关紧要，事实上，几乎所有的关系型数据库设计概念都跟Exc">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-04-05T17:16:09.673Z">
+<meta property="og:updated_time" content="2018-04-05T17:16:35.305Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="python-sqlite3快速上手">
 <meta name="twitter:description" content="说明:本人最近翻译sqlite3的python API文档。该文档较为详细地介绍了sqlite3的特性，但是，我认为对于初学者来说，很多内容其实都用不到，因此，我在此写一个较为简短的教程，总结主要的内容，以便初学者能够快速上手。 sqlite3 简介sqlite3其实就是一个轻量化的sql数据库，类似mysql，如果你对mysql不熟悉，也无关紧要，事实上，几乎所有的关系型数据库设计概念都跟Exc">
@@ -416,7 +416,37 @@
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 关键的一步配置</span></span><br><span class="line">conn.row_factory = sqlite3.Row</span><br><span class="line">c = conn.cursor()</span><br><span class="line">c.execute(<span class="string">'select * from stocks'</span>)</span><br><span class="line">&lt;sqlite3.Cursor object at <span class="number">0x7f4e7dd8fa80</span>&gt;</span><br><span class="line">r = c.fetchone()</span><br><span class="line"></span><br><span class="line">type(r)</span><br><span class="line">&lt;<span class="class"><span class="keyword">class</span> '<span class="title">sqlite3</span>.<span class="title">Row</span>'&gt;</span></span><br><span class="line"><span class="class"></span></span><br><span class="line"><span class="class"><span class="title">tuple</span><span class="params">(r)</span></span></span><br><span class="line"><span class="class"><span class="params">(<span class="string">'2006-01-05'</span>, <span class="string">'BUY'</span>, <span class="string">'RHAT'</span>, <span class="number">100.0</span>, <span class="number">35.14</span>)</span></span></span><br><span class="line"><span class="class"></span></span><br><span class="line"><span class="class"><span class="title">len</span><span class="params">(r)</span></span></span><br><span class="line"><span class="class">5</span></span><br><span class="line"><span class="class"></span></span><br><span class="line"><span class="class"><span class="title">r</span>[2]</span></span><br><span class="line"><span class="class">'<span class="title">RHAT</span>'</span></span><br><span class="line"><span class="class"></span></span><br><span class="line"><span class="class"><span class="title">r</span>.<span class="title">keys</span><span class="params">()</span></span></span><br><span class="line">['date', 'trans', 'symbol', 'qty', 'price']</span><br><span class="line"></span><br><span class="line">r[<span class="string">'qty'</span>]</span><br><span class="line"><span class="number">100.0</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> member <span class="keyword">in</span> r:</span><br><span class="line">    print(member)</span><br><span class="line"></span><br><span class="line"><span class="number">2006</span><span class="number">-01</span><span class="number">-05</span></span><br><span class="line">BUY</span><br><span class="line">RHAT</span><br><span class="line"><span class="number">100.0</span></span><br><span class="line"><span class="number">35.14</span></span><br></pre></td></tr></table></figure>
 <p>掌握了Connection对象，Cursor对象和Row对象，基本上你可以畅通无阻了！接下来是一些进阶内容。</p>
 <h1 id="SQLite和python之间的数据转换"><a href="#SQLite和python之间的数据转换" class="headerlink" title="SQLite和python之间的数据转换"></a>SQLite和python之间的数据转换</h1><p>SQLite本身支持以下类型:NULL,INTEGER,REAL,TEXT,BLOB。</p>
-<p>因此可以将以下Python类型发送给SQLite,而不会有任何问题:<br>Python type  |  SQLite type<br>—|—<br>None |  NULL<br>int |   INTEGER<br>float | REAL<br>str |   TEXT<br>bytes | BLOB</p>
+<p>因此可以将以下Python类型发送给SQLite,而不会有任何问题:</p>
+<table>
+<thead>
+<tr>
+<th>Python type</th>
+<th>SQLite type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>None</td>
+<td>NULL</td>
+</tr>
+<tr>
+<td>int</td>
+<td>INTEGER</td>
+</tr>
+<tr>
+<td>float</td>
+<td>REAL</td>
+</tr>
+<tr>
+<td>str</td>
+<td>TEXT</td>
+</tr>
+<tr>
+<td>bytes</td>
+<td>BLOB</td>
+</tr>
+</tbody>
+</table>
 <p>这是默认情况下SQLite类型转换为Python类型的方式:</p>
 <table>
 <thead>

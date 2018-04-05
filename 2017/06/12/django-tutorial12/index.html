@@ -93,17 +93,17 @@
 
 
 
-<meta name="description" content="我们把不少文件存进去了,怎么把他们取出来,列到主页上呢。你肯定是要使用数据库的接口,然后从里面抓取数据的,但是,我们之前说过django通过ORM把数据库封装了,所以,每次取数据库的数据也非常简单我们每次,叫一名讲解员引用models里面的数据模型,代码如下 12from models import fileModelall_data = fileModel.objects.all() 只要这样的">
+<meta name="description" content="html表格我们把不少文件存进去了,怎么把他们取出来,列到主页上呢。你肯定是要使用数据库的接口,然后从里面抓取数据的,但是,我们之前说过django通过ORM把数据库封装了,所以,每次取数据库的数据也非常简单我们每次,叫一个view函数引用models里面的数据模型,代码如下 12from models import fileModelall_data = fileModel.objects.al">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Django新手教程12,列出数据">
 <meta property="og:url" content="http://zju.xyz/2017/06/12/django-tutorial12/index.html">
 <meta property="og:site_name" content="myCabine">
-<meta property="og:description" content="我们把不少文件存进去了,怎么把他们取出来,列到主页上呢。你肯定是要使用数据库的接口,然后从里面抓取数据的,但是,我们之前说过django通过ORM把数据库封装了,所以,每次取数据库的数据也非常简单我们每次,叫一名讲解员引用models里面的数据模型,代码如下 12from models import fileModelall_data = fileModel.objects.all() 只要这样的">
+<meta property="og:description" content="html表格我们把不少文件存进去了,怎么把他们取出来,列到主页上呢。你肯定是要使用数据库的接口,然后从里面抓取数据的,但是,我们之前说过django通过ORM把数据库封装了,所以,每次取数据库的数据也非常简单我们每次,叫一个view函数引用models里面的数据模型,代码如下 12from models import fileModelall_data = fileModel.objects.al">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-04-05T12:02:19.165Z">
+<meta property="og:updated_time" content="2018-04-05T12:49:08.941Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Django新手教程12,列出数据">
-<meta name="twitter:description" content="我们把不少文件存进去了,怎么把他们取出来,列到主页上呢。你肯定是要使用数据库的接口,然后从里面抓取数据的,但是,我们之前说过django通过ORM把数据库封装了,所以,每次取数据库的数据也非常简单我们每次,叫一名讲解员引用models里面的数据模型,代码如下 12from models import fileModelall_data = fileModel.objects.all() 只要这样的">
+<meta name="twitter:description" content="html表格我们把不少文件存进去了,怎么把他们取出来,列到主页上呢。你肯定是要使用数据库的接口,然后从里面抓取数据的,但是,我们之前说过django通过ORM把数据库封装了,所以,每次取数据库的数据也非常简单我们每次,叫一个view函数引用models里面的数据模型,代码如下 12from models import fileModelall_data = fileModel.objects.al">
 
 
 
@@ -395,11 +395,11 @@
       
 
       
-        <p>我们把不少文件存进去了,怎么把他们取出来,列到主页上呢。你肯定是要使用数据库的接口,然后从里面抓取数据的,但是,我们之前说过django通过ORM把数据库封装了,所以,每次取数据库的数据也非常简单<br>我们每次,叫一名讲解员引用models里面的数据模型,代码如下</p>
+        <h1 id="html表格"><a href="#html表格" class="headerlink" title="html表格"></a>html表格</h1><p>我们把不少文件存进去了,怎么把他们取出来,列到主页上呢。你肯定是要使用数据库的接口,然后从里面抓取数据的,但是,我们之前说过django通过ORM把数据库封装了,所以,每次取数据库的数据也非常简单<br>我们每次,叫一个view函数引用models里面的数据模型,代码如下</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> models <span class="keyword">import</span> fileModel</span><br><span class="line">all_data = fileModel.objects.all()</span><br></pre></td></tr></table></figure>
 <p>只要这样的一句话,就把所有的数据取出并存到all_data列表中了,我们接下来要做的就是,根据数据绘制html表格呈现在网页上。<br>如果你对html比较熟悉的话,就会使用这样的句子</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">file_table = <span class="string">""</span></span><br><span class="line"><span class="keyword">for</span> file <span class="keyword">in</span> all_data:</span><br><span class="line">    file_table += <span class="string">'&lt;tr&gt;&lt;a href="%s"&gt;%s&lt;/a&gt;&lt;/tr&gt;'</span> % (file.name,file.url)</span><br></pre></td></tr></table></figure>
-<p>最后把file_table 插入index.html就可以了。<br>我们可以看到,我们这样制作HTML列表是比较粗糙的,还需要自己加上HTML表头等一些东西来完善,这样是比较麻烦的,而且有个最大的问题是不能选择分页,也就是说,如果你存储的文档比较多,他也是一次性全部列出来,如果你要控制10个10个地列出的话,那你上面的函数就要修改,比如每十个数据做一次循环,这就涉及有点难度的算法问题了,django没有帮你把这些都省了,但是,万能的网友帮你把这个省了,有人专门把这样的事情包装起来了,因为,我们可以看到,每次,我们都是需要从数据库中取出数据,然后一个个数据做成HTML能认的表格,最后插入到网页中去,这个制作表格的过程确实比较乏味。所以我们就借助外包装的package来帮助我们完成这项任务。<br>安装也比较简单,使用pip就可以了,我们还是安装在虚拟环境中。<br>确认我们处于django虚拟环境,输入</p>
+<p>最后把file_table 按照插入语的方式插入index.html就可以了。<br>我们可以看到,我们这样制作HTML列表是比较粗糙的,还需要自己加上HTML表头等一些东西来完善,这样是比较麻烦的,而且有个最大的问题是不能选择分页,也就是说,如果你存储的文档比较多,他也是一次性全部列出来,如果你要控制10个10个地列出的话,那你上面的函数就要修改,比如每十个数据做一次循环,这就涉及有点难度的算法问题了,django没有帮你把这些都省了,但是,万能的网友帮你把这个省了,有人专门把这样的事情包装起来了,因为,我们可以看到,每次,我们都是需要从数据库中取出数据,然后一个个数据做成HTML能认的表格,最后插入到网页中去,这个制作表格的过程确实比较乏味。所以我们就借助外包装的package来帮助我们完成这项任务。<br>安装也比较简单,使用pip就可以了,我们还是安装在虚拟环境中。<br>确认我们处于django虚拟环境,输入</p>
 <blockquote>
 <p>pip install django-tables2</p>
 </blockquote>
@@ -407,10 +407,11 @@
 <p>然后我们在,myCloud目录里面新建一个叫tables.py的文件用来制作表格。<br>输入</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> django_tables2 <span class="keyword">as</span> tables</span><br><span class="line"><span class="keyword">from</span> .models <span class="keyword">import</span> fileModel</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">fileTable</span><span class="params">(tables.Table)</span>:</span></span><br><span class="line">    <span class="class"><span class="keyword">class</span> <span class="title">Meta</span>:</span></span><br><span class="line">        model = fileModel</span><br></pre></td></tr></table></figure>
 <p>定义好数据模型的表格后,我们在views.py的函数中生成table,先在views.py输入如下代码<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> django.http <span class="keyword">import</span> HttpResponse</span><br><span class="line"><span class="keyword">from</span> datetime <span class="keyword">import</span> date</span><br><span class="line"><span class="keyword">from</span> .models <span class="keyword">import</span> fileModel</span><br><span class="line"><span class="keyword">from</span> .tables <span class="keyword">import</span> fileTable</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">index_view</span><span class="params">(request)</span>:</span></span><br><span class="line">    today = str(date.today())</span><br><span class="line">    word = <span class="string">"hello, today is "</span> + today</span><br><span class="line">    table = fileTable(fileModel.objects.all())</span><br><span class="line">    <span class="keyword">return</span> render(request,<span class="string">'index.html'</span>,&#123;<span class="string">'baoshi'</span>:word,<span class="string">'biaoge'</span>:table&#125;)</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">result_view</span><span class="params">(request)</span>:</span></span><br><span class="line">    <span class="keyword">if</span> request.method == <span class="string">'POST'</span>:</span><br><span class="line">        data=request.FILES[<span class="string">'myfile'</span>]</span><br><span class="line">        file = fileModel(myfile=data)</span><br><span class="line">        file.save()</span><br><span class="line">        <span class="keyword">return</span> redirect(<span class="string">'/'</span>)</span><br><span class="line">    <span class="keyword">return</span> HttpResponse(<span class="string">"Sorry the uplaod is unsucessful."</span>)</span><br></pre></td></tr></table></figure></p>
-<p>然后把我们讲解语2插入到index.html中去。<br>首先要在index.html的第一行加上<br><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#123;% load render_table from django_tables2 %&#125;</span><br></pre></td></tr></table></figure></p>
+<p>然后把我们表格插入到index.html中去。<br>首先要在index.html的第一行加上<br><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#123;% load render_table from django_tables2 %&#125;</span><br></pre></td></tr></table></figure></p>
 <p>然后在下面插入<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#123;% render_table biaoge %&#125;</span><br></pre></td></tr></table></figure></p>
 <p>最终效果是<br><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">&#123;% load render_table from django_tables2 %&#125;</span><br><span class="line"><span class="meta">&lt;!doctype html&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">http-equiv</span>=<span class="string">"Content-Type"</span> <span class="attr">content</span>=<span class="string">"text/html; charset=UTF-8"</span> /&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">title</span>&gt;</span>Home Page<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">img</span> <span class="attr">src</span>=<span class="string">"/static/logo.png"</span> /&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">p</span>&gt;</span>Welcome<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">p</span>&gt;</span>&#123;&#123; baoshi &#125;&#125;<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">form</span> <span class="attr">action</span>=<span class="string">"result.html"</span> <span class="attr">method</span>=<span class="string">"POST"</span> <span class="attr">enctype</span>=<span class="string">"multipart/form-data"</span>&gt;</span></span><br><span class="line">    &#123;% csrf_token %&#125;</span><br><span class="line">    <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"file"</span> <span class="attr">name</span>=<span class="string">"myfile"</span> <span class="attr">required</span> /&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">br</span>&gt;</span> </span><br><span class="line">    <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"submit"</span> <span class="attr">name</span>=<span class="string">""</span> <span class="attr">value</span>=<span class="string">"OK"</span> /&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">form</span>&gt;</span> </span><br><span class="line">  &#123;% render_table biaoge %&#125;</span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
-<p>这时你再运行服务器,就应该能看到你之前网数据库上传的的文件了,然后你还会发现这些文件名是一个链接,但是,点击文件还是不可以下载的,你为你还没有允许通过URL找到上传的文件。一般情况下,我们的服务器需要文件下载的功能,那么这需要网络框架和部署时的服务器软件一起配置才能发挥最好的效果,防止瞬时下载量过大,仅靠django忙不过来。对于非商用环境,我们在DEBUG模式下,可以使用一个static函数将我们的文件路径和url绑定,然后就可以靠着url的请求来下载了,<br>到这里一般就可以点击列表上的文件名进行轻松下载了。<br>但是,有时候如果是txt文件,用某些浏览器可能会将该文件强行打开,或者跳转到别的地方试图将该文件打开,为了保险起见,我们需要在渲染的HTML的a标签里面添加一个download字眼,这样的话,强求浏览器进行下载而不是试图去打开了。</p>
+<h1 id="文件下载"><a href="#文件下载" class="headerlink" title="文件下载"></a>文件下载</h1><p>这时你再运行服务器,就应该能看到你之前网数据库上传的的文件了,然后你还会发现这些文件名是一个链接,在上一章的文件上传设置中，我们就配置好了media文件的路径了，因此，你点击这些链接就可以直接下载文件了,当然洗，一般来说，文件的上传和下载需要网络框架和部署时的服务器软件一起配置才能发挥最好的效果,防止瞬时下载量过大,仅靠django忙不过来。对于非商用环境,我们这样做就足够了。</p>
+<p>但是,有时候如果是txt文件,用某些浏览器可能会将该文件强行打开,或者跳转到别的地方试图将该文件打开,为了保险起见,我们需要在渲染的HTML的a标签里面添加一个download字眼,这样的话,强求浏览器进行下载而不是试图去打开了。</p>
 <p>这里,我们需要在tables.py文件中将myfile栏进行稍微的加工。稍微修改一下fileTable,添加一行</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> django_tables2 <span class="keyword">as</span> tables</span><br><span class="line"><span class="keyword">from</span> .models <span class="keyword">import</span> fileModel</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">fileTable</span><span class="params">(tables.Table)</span>:</span></span><br><span class="line">    myfile = tables.columns.FileColumn(attrs=&#123;<span class="string">'a'</span>: &#123;<span class="string">'download'</span>: <span class="string">''</span>&#125;&#125;)</span><br><span class="line">    <span class="class"><span class="keyword">class</span> <span class="title">Meta</span>:</span></span><br><span class="line">        model = fileModel</span><br></pre></td></tr></table></figure>
 <p>这样就会强制下载而不是跳转或者打开文件了。</p>
@@ -528,8 +529,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview sidebar-panel sidebar-panel-active">
+      <section class="site-overview sidebar-panel">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image"
                src="/images/logo.png"
@@ -582,6 +592,22 @@
 
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#html表格"><span class="nav-number">1.</span> <span class="nav-text">html表格</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#文件下载"><span class="nav-number">2.</span> <span class="nav-text">文件下载</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       

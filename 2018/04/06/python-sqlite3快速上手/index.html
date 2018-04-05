@@ -100,7 +100,7 @@
 <meta property="og:site_name" content="myCabine">
 <meta property="og:description" content="说明:本人最近翻译sqlite3的python API文档。该文档较为详细地介绍了sqlite3的特性，但是，我认为对于初学者来说，很多内容其实都用不到，因此，我在此写一个较为简短的教程，总结主要的内容，以便初学者能够快速上手。 sqlite3 简介sqlite3其实就是一个轻量化的sql数据库，类似mysql，如果你对mysql不熟悉，也无关紧要，事实上，几乎所有的关系型数据库设计概念都跟Exc">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-04-05T17:15:58.545Z">
+<meta property="og:updated_time" content="2018-04-05T17:16:09.673Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="python-sqlite3快速上手">
 <meta name="twitter:description" content="说明:本人最近翻译sqlite3的python API文档。该文档较为详细地介绍了sqlite3的特性，但是，我认为对于初学者来说，很多内容其实都用不到，因此，我在此写一个较为简短的教程，总结主要的内容，以便初学者能够快速上手。 sqlite3 简介sqlite3其实就是一个轻量化的sql数据库，类似mysql，如果你对mysql不熟悉，也无关紧要，事实上，几乎所有的关系型数据库设计概念都跟Exc">
@@ -418,7 +418,36 @@
 <h1 id="SQLite和python之间的数据转换"><a href="#SQLite和python之间的数据转换" class="headerlink" title="SQLite和python之间的数据转换"></a>SQLite和python之间的数据转换</h1><p>SQLite本身支持以下类型:NULL,INTEGER,REAL,TEXT,BLOB。</p>
 <p>因此可以将以下Python类型发送给SQLite,而不会有任何问题:<br>Python type  |  SQLite type<br>—|—<br>None |  NULL<br>int |   INTEGER<br>float | REAL<br>str |   TEXT<br>bytes | BLOB</p>
 <p>这是默认情况下SQLite类型转换为Python类型的方式:</p>
-<p>SQLite type |   Python type<br>NULL |  None<br>INTEGER |   int<br>REAL |  float<br>TEXT |  depends on text_factory, str by default<br>BLOB |  bytes</p>
+<table>
+<thead>
+<tr>
+<th>SQLite type</th>
+<th>Python type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>NULL</td>
+<td>None</td>
+</tr>
+<tr>
+<td>INTEGER</td>
+<td>int</td>
+</tr>
+<tr>
+<td>REAL</td>
+<td>float</td>
+</tr>
+<tr>
+<td>TEXT</td>
+<td>depends on text_factory, str by default</td>
+</tr>
+<tr>
+<td>BLOB</td>
+<td>bytes</td>
+</tr>
+</tbody>
+</table>
 <p>对于复杂的python类型,我们可以通过adapter函数将负责的python类型转为sqlite能识别的的基本类，然后读数据库的时候又通过converter函数将基本类转为复杂的python类型<br>我们以下面的复杂python类型为例进行讲解<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Point</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self, x, y)</span>:</span></span><br><span class="line">        self.x, self.y = x, y</span><br></pre></td></tr></table></figure></p>
 <p>我们可以看到上面的Point是一个复杂的类型，既不同于float，也不同于string。</p>
 <h2 id="adapter-函数"><a href="#adapter-函数" class="headerlink" title="adapter 函数"></a>adapter 函数</h2><p>很显然，这样的类是不能直接保存到sqlite3数据库里面的，但是现在您偏偏想要将该点存储在单个SQLite列中。首先,您必须首先选择一种sqlite3支持的python类型来表示该点，比如str类型，因此，我们要想办法设计一个adapter函数，把复杂类型转为str类型。<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">adapt_point</span><span class="params">(point)</span>:</span></span><br><span class="line">    <span class="keyword">return</span> <span class="string">"%f;%f"</span> % (point.x, point.y)</span><br></pre></td></tr></table></figure></p>

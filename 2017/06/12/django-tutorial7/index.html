@@ -93,12 +93,12 @@
 
 
 
-<meta name="description" content="打开cmd,利用之前学的技能,将我们为django准备的虚拟环境激活,进入到项目目录,也就是父mysite目录下  D:/django_project/mysite  你会看到里面有一个一个mysite目录和manage.py之前,我们新建了项目,但是我们还没确认项目是否新建成功,所以,为了确认一下,我们敲入  python manage.py runserver  django内置了一个服务器软">
+<meta name="description" content="万能的管理员manage.py打开cmd,利用之前学的技能,将我们为django准备的虚拟环境激活,进入到项目目录,也就是父mysite目录下  D:/django_project/mysite  你会看到里面有一个一个mysite目录和manage.py之前,我们新建了项目,但是我们还没确认项目是否新建成功,所以,为了确认一下,我们敲入  python manage.py runserver">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Django新手教程7,启动服务器">
 <meta property="og:url" content="http://zju.xyz/2017/06/12/django-tutorial7/index.html">
 <meta property="og:site_name" content="myCabine">
-<meta property="og:description" content="打开cmd,利用之前学的技能,将我们为django准备的虚拟环境激活,进入到项目目录,也就是父mysite目录下  D:/django_project/mysite  你会看到里面有一个一个mysite目录和manage.py之前,我们新建了项目,但是我们还没确认项目是否新建成功,所以,为了确认一下,我们敲入  python manage.py runserver  django内置了一个服务器软">
+<meta property="og:description" content="万能的管理员manage.py打开cmd,利用之前学的技能,将我们为django准备的虚拟环境激活,进入到项目目录,也就是父mysite目录下  D:/django_project/mysite  你会看到里面有一个一个mysite目录和manage.py之前,我们新建了项目,但是我们还没确认项目是否新建成功,所以,为了确认一下,我们敲入  python manage.py runserver">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="http://zju.xyz/2017/06/12/django-tutorial7/7.1.png">
 <meta property="og:image" content="http://zju.xyz/2017/06/12/django-tutorial7/7.2.png">
@@ -106,10 +106,10 @@
 <meta property="og:image" content="http://zju.xyz/2017/06/12/django-tutorial7/7.4.png">
 <meta property="og:image" content="http://zju.xyz/2017/06/12/django-tutorial7/7.5.png">
 <meta property="og:image" content="http://zju.xyz/2017/06/12/django-tutorial7/7.6.png">
-<meta property="og:updated_time" content="2018-04-05T12:03:03.828Z">
+<meta property="og:updated_time" content="2018-04-05T17:39:07.895Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Django新手教程7,启动服务器">
-<meta name="twitter:description" content="打开cmd,利用之前学的技能,将我们为django准备的虚拟环境激活,进入到项目目录,也就是父mysite目录下  D:/django_project/mysite  你会看到里面有一个一个mysite目录和manage.py之前,我们新建了项目,但是我们还没确认项目是否新建成功,所以,为了确认一下,我们敲入  python manage.py runserver  django内置了一个服务器软">
+<meta name="twitter:description" content="万能的管理员manage.py打开cmd,利用之前学的技能,将我们为django准备的虚拟环境激活,进入到项目目录,也就是父mysite目录下  D:/django_project/mysite  你会看到里面有一个一个mysite目录和manage.py之前,我们新建了项目,但是我们还没确认项目是否新建成功,所以,为了确认一下,我们敲入  python manage.py runserver">
 <meta name="twitter:image" content="http://zju.xyz/2017/06/12/django-tutorial7/7.1.png">
 
 
@@ -402,7 +402,7 @@
       
 
       
-        <p>打开cmd,利用之前学的技能,将我们为django准备的虚拟环境激活,进入到项目目录,也就是父mysite目录下</p>
+        <h1 id="万能的管理员manage-py"><a href="#万能的管理员manage-py" class="headerlink" title="万能的管理员manage.py"></a>万能的管理员manage.py</h1><p>打开cmd,利用之前学的技能,将我们为django准备的虚拟环境激活,进入到项目目录,也就是父mysite目录下</p>
 <blockquote>
 <p>D:/django_project/mysite</p>
 </blockquote>
@@ -410,6 +410,7 @@
 <blockquote>
 <p>python manage.py runserver</p>
 </blockquote>
+<p>这里的manage.py相当于我们整个项目的管理者,将来我还会经常用到这个文件。</p>
 <p>django内置了一个服务器软件,你可以认为是简化版的apache,但是足够调试使用了,注意,仅仅够调试,服务器软件的功能它基本都有,但是,真正部署起来,还是要来专业人士(nginx或apache)来做,因为面对业界复杂的环境,比如高访问量,这个服务器软件随时会崩。我们离部署使用还远的呢,所以就姑且用着django内置的服务器软件吧.<br>启动内置的服务器软件,这样,我们的计算机就可以提供网络服务了。</p>
 <img src="/2017/06/12/django-tutorial7/7.1.png">
 <p>这时,打开浏览器,输入</p>
@@ -551,8 +552,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview sidebar-panel sidebar-panel-active">
+      <section class="site-overview sidebar-panel">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image"
                src="/images/logo.png"
@@ -578,7 +588,7 @@
             
             <div class="site-state-item site-state-categories">
               <a href="/categories/index.html">
-                <span class="site-state-item-count">6</span>
+                <span class="site-state-item-count">5</span>
                 <span class="site-state-item-name">分类</span>
               </a>
             </div>
@@ -605,6 +615,22 @@
 
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#万能的管理员manage-py"><span class="nav-number">1.</span> <span class="nav-text">万能的管理员manage.py</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       

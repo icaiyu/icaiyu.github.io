@@ -100,7 +100,7 @@
 <meta property="og:site_name" content="myCabine">
 <meta property="og:description" content="我们把不少文件存进去了,怎么把他们取出来,列到主页上呢。你肯定是要使用数据库的接口,然后从里面抓取数据的,但是,我们之前说过django通过ORM把数据库封装了,所以,每次取数据库的数据也非常简单我们每次,叫一名讲解员引用models里面的数据模型,代码如下 12from models import fileModelall_data = fileModel.objects.all() 只要这样的">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-04-03T16:36:14.066Z">
+<meta property="og:updated_time" content="2018-04-05T12:02:19.165Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Django新手教程12,列出数据">
 <meta name="twitter:description" content="我们把不少文件存进去了,怎么把他们取出来,列到主页上呢。你肯定是要使用数据库的接口,然后从里面抓取数据的,但是,我们之前说过django通过ORM把数据库封装了,所以,每次取数据库的数据也非常简单我们每次,叫一名讲解员引用models里面的数据模型,代码如下 12from models import fileModelall_data = fileModel.objects.all() 只要这样的">
@@ -414,7 +414,8 @@
 <p>这里,我们需要在tables.py文件中将myfile栏进行稍微的加工。稍微修改一下fileTable,添加一行</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> django_tables2 <span class="keyword">as</span> tables</span><br><span class="line"><span class="keyword">from</span> .models <span class="keyword">import</span> fileModel</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">fileTable</span><span class="params">(tables.Table)</span>:</span></span><br><span class="line">    myfile = tables.columns.FileColumn(attrs=&#123;<span class="string">'a'</span>: &#123;<span class="string">'download'</span>: <span class="string">''</span>&#125;&#125;)</span><br><span class="line">    <span class="class"><span class="keyword">class</span> <span class="title">Meta</span>:</span></span><br><span class="line">        model = fileModel</span><br></pre></td></tr></table></figure>
 <p>这样就会强制下载而不是跳转或者打开文件了。</p>
-
+<p><section id="isso-thread"></section></p>
+<script data-isso="http://zju.xyz/isso/" src="http://zju.xyz/isso/js/embed.min.js"></script>
       
     </div>
 

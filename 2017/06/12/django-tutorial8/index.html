@@ -103,7 +103,7 @@
 <meta property="og:image" content="http://zju.xyz/2017/06/12/django-tutorial8/8.1.png">
 <meta property="og:image" content="http://zju.xyz/2017/06/12/django-tutorial8/8.2.png">
 <meta property="og:image" content="http://zju.xyz/2017/06/12/django-tutorial8/8.4.png">
-<meta property="og:updated_time" content="2018-04-03T17:03:57.143Z">
+<meta property="og:updated_time" content="2018-04-05T12:03:07.316Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Django新手教程8,开发第一个页面">
 <meta name="twitter:description" content="再一次,好好看一下那个恭喜的页面,多么美妙啊,可是好像目前为止,我们好像什么也还没干,想做云盘,可目前整个项目还没出现个云字。 别急,马上就来了！ 我们先把服务器停了,按ctrl+C我们先给我们要做的APP起个名字吧,不是说好了要做云盘么,就起名myCloud吧,当然,你也可以起别的名字,不过为了保险起见,你还是按着我的方式,一模一样地来,免得到最后搞混乱了。在cmd中敲入(确认虚拟环境激活状态,">
@@ -471,7 +471,8 @@
 </blockquote>
 <p>上去,因为,我们作为网页的管理员,希望游客看我们的页面而不是看我们的目录,而这些,都可以在 urls.py文件里面设定,比如把myCloud文件夹里面的urls.py修改为<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> django.conf.urls <span class="keyword">import</span> url</span><br><span class="line"><span class="keyword">from</span> . <span class="keyword">import</span> views</span><br><span class="line">urlpatterns = [</span><br><span class="line">    url(<span class="string">r''</span>,views.index_view),</span><br><span class="line">]</span><br></pre></td></tr></table></figure></p>
 <p>那么这时只要输入ip就能直接访问我们的主页了,所以我们看到,在url函数的左边写入外部URL,右边写入负责相应页面的讲解员的名字就可以了。如果你学过正则表达式,那么你还可以设置更加复杂的表达式来对应url,这样一来你的服务器软件会显得更加智能,比如游客手残输入<br>172.20.10/ondex.httttttml<br>你也能指引到主页上去,这些都是正则表达式能干的,咱们这里就不多说了。</p>
-
+<p><section id="isso-thread"></section></p>
+<script data-isso="http://zju.xyz/isso/" src="http://zju.xyz/isso/js/embed.min.js"></script>
       
     </div>
 

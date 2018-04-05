@@ -102,7 +102,7 @@
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="http://zju.xyz/2017/06/12/django-tutorial10/10.1.png">
 <meta property="og:image" content="http://zju.xyz/2017/06/12/django-tutorial10/10.2.png">
-<meta property="og:updated_time" content="2018-04-03T17:07:37.311Z">
+<meta property="og:updated_time" content="2018-04-05T12:02:11.588Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Django新手教程10,私人云盘">
 <meta name="twitter:description" content="数据模型现在开始,我们要加快进度,快马加鞭制作我们的云盘。我们现在先别管会员制,我们先假设制作一个人用的云盘,假设我们进入主页就是已经登录好的云盘界面,我们思考一下,这个页面需要哪些东西。因为是一个云盘,所以,我们肯定需要一个列表,上面列着我们存在云盘上的文件,然后点击他们可以下载,然后每个文件右边有个删除按钮用来删除文件,主页还有一个上传按钮用来上传文件,基本上只要把上面的功能实现了,那我们的云">
@@ -409,16 +409,17 @@
 <img src="/2017/06/12/django-tutorial10/10.1.png">
 <p>之后,我们往里面填数据的时候就会变成这样：</p>
 <img src="/2017/06/12/django-tutorial10/10.2.png">
-<p>而django 的存数据过程也是一样的,如下<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> django.db <span class="keyword">import</span> models</span><br><span class="line"></span><br><span class="line"><span class="comment"># Create your models here.</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">fileModel</span><span class="params">(models.Model)</span>:</span></span><br><span class="line">    myfile = models.FileField(upload_to=<span class="string">'upload'</span>)</span><br><span class="line">    upload_date = models.DateField(auto_now_add=<span class="keyword">True</span>)</span><br></pre></td></tr></table></figure></p>
+<p>而django 的存数据过程也是一样的,如下<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> django.db <span class="keyword">import</span> models</span><br><span class="line"></span><br><span class="line"><span class="comment"># Create your models here.</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">fileModel</span><span class="params">(models.Model)</span>:</span></span><br><span class="line">    myfile = models.FileField()</span><br><span class="line">    upload_date = models.DateField(auto_now_add=<span class="keyword">True</span>)</span><br></pre></td></tr></table></figure></p>
 <p>以上就是数据模型了。<br>怎么去理解上面的代码呢,我们看到,我们新建了一个class,这个类名是<br>fileModel这也就是我们需要的数据表格的名字,我们创建的这个类就相当于告诉django,你给我在数据库里新建一个叫fileModel的Excel表格。<br>然后这个表格就只有两栏,就是我们写的两行代码。<br>第一行是myfile 表示这一栏(或者说这一列)里面存的是一种叫文件的数据类型,根据这个数据类型,我们能够直接得到文件名和文件所在的路径,excel只能存字符串,或者说你只能往里面打字,但是django的一小格我们能里面填文件。<br>第二行uplaod_date表示这一栏存的是一种叫日期的数据类型,我们把auto_now_add设置为True表示说这里记录文件上传时的日期。<br>我们用pytho自带的sqlite3相当于自有了一个xls文件,所以,对应第一步,我们不需要做<br>而以上写代码的过程,就相当于与新建一张excel表格,并设置了表头。这是第二和第三步。<br>而写数据的工作当然是交个网页其他的代码去做的。</p>
 <p>所谓的数据建模,实际上就是设置 表头,就是这么简单！</p>
-<p>值得注意的是,而我们看到之前的函数,里面有一条叫‘upload_to’的参数,他就是要我们指明文件的上传路径。因为,数据库不会真的把这个文件都放进去,记录的是文件的信息,而真正的文件则传到上传路径里面。(不过,我们可以假装文件真的是放进数据库里面的一个个小格子里面去了)</p>
 <h1 id="注册APP"><a href="#注册APP" class="headerlink" title="注册APP"></a>注册APP</h1><p>在使用数据模型之前,我们需要将APP注册一下,因为,我们设计的这个表头,这个数据模型是专门为我们的云盘APP服务的,和大的project没有啥关系,所以,在根据数据模型新建数据库之前,我们要注册好云盘APP。<br>实际上,在开始startapp之后就应该马上注册的,但是,如果不注册,不影响之前的操作,不过,不注册的话,是没办法根据数据模型新建数据库的,所以,我们需要注册我们的云盘APP到mysite项目里面去,注册方法很简单,我们到myCloud目录下打开 apps.py找到其中的一个class名MycloudConfig,然后到setting.py找到app注册的设置部分,大概在30行左右,添加 myCloud.apps.MycloudConfig,如果,你熟悉python,你就会发现,实际上这个就是路径名加上py文件名加类名<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Application definition</span></span><br><span class="line"></span><br><span class="line">INSTALLED_APPS = [</span><br><span class="line">    <span class="string">'myCloud.apps.MycloudConfig'</span>,</span><br><span class="line">    <span class="string">'django.contrib.admin'</span>,</span><br><span class="line">    <span class="string">'django.contrib.auth'</span>,</span><br><span class="line">    <span class="string">'django.contrib.contenttypes'</span>,</span><br><span class="line">    <span class="string">'django.contrib.sessions'</span>,</span><br><span class="line">    <span class="string">'django.contrib.messages'</span>,</span><br><span class="line">    <span class="string">'django.contrib.staticfiles'</span>,</span><br><span class="line">]</span><br></pre></td></tr></table></figure></p>
 <p>注册好之后,我们需要运行</p>
 <blockquote>
 <p>python manage.py makemigrations<br>python mange.py migrate</p>
 </blockquote>
 <p>也就是我们设置好表头信息后,django帮助我们完成建表的工作</p>
+<p><section id="isso-thread"></section></p>
+<script data-isso="http://zju.xyz/isso/" src="http://zju.xyz/isso/js/embed.min.js"></script>
 
       
     </div>

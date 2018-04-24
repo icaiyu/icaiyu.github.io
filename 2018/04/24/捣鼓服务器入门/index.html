@@ -93,17 +93,17 @@
 
 
 
-<meta name="description" content="最近在折腾一台戴尔的服务器，虽然之前已经玩过VPS，但是，这次拿到一台真正的服务器还是非常激动的。于是开始了折腾之旅，搞完之后还赶紧拿个小本子记下，以后就是我运维入门的证据啊！  机器：戴尔T630塔式服务器 系统：CentOS Linux release 7.3.1611 配置: 2颗E5，32G没存  由于系统已经实现安装好，所以，可以开始撸起袖子就是干啦，第一步，当然是要首先确认一下，硬件是">
+<meta name="description" content="最近在折腾一台戴尔的服务器，虽然之前已经玩过VPS，但是，这次拿到一台真正的服务器还是非常激动的。于是开始了折腾之旅，搞完之后还赶紧拿个小本子记下，以后就是我运维入门的证据啊！  机器：戴尔T630塔式服务器 系统：CentOS Linux release 7.3.1611 配置: 2颗E5，32G内存由于系统已经提前安装好，所以，可以开始撸起袖子就是干啦，第一步，当然是要首先确认一下，硬件是否正">
 <meta property="og:type" content="article">
 <meta property="og:title" content="捣鼓服务器入门">
 <meta property="og:url" content="http://zju.xyz/2018/04/24/捣鼓服务器入门/index.html">
 <meta property="og:site_name" content="myCabine">
-<meta property="og:description" content="最近在折腾一台戴尔的服务器，虽然之前已经玩过VPS，但是，这次拿到一台真正的服务器还是非常激动的。于是开始了折腾之旅，搞完之后还赶紧拿个小本子记下，以后就是我运维入门的证据啊！  机器：戴尔T630塔式服务器 系统：CentOS Linux release 7.3.1611 配置: 2颗E5，32G没存  由于系统已经实现安装好，所以，可以开始撸起袖子就是干啦，第一步，当然是要首先确认一下，硬件是">
+<meta property="og:description" content="最近在折腾一台戴尔的服务器，虽然之前已经玩过VPS，但是，这次拿到一台真正的服务器还是非常激动的。于是开始了折腾之旅，搞完之后还赶紧拿个小本子记下，以后就是我运维入门的证据啊！  机器：戴尔T630塔式服务器 系统：CentOS Linux release 7.3.1611 配置: 2颗E5，32G内存由于系统已经提前安装好，所以，可以开始撸起袖子就是干啦，第一步，当然是要首先确认一下，硬件是否正">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-04-24T13:53:47.814Z">
+<meta property="og:updated_time" content="2018-04-24T14:16:26.127Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="捣鼓服务器入门">
-<meta name="twitter:description" content="最近在折腾一台戴尔的服务器，虽然之前已经玩过VPS，但是，这次拿到一台真正的服务器还是非常激动的。于是开始了折腾之旅，搞完之后还赶紧拿个小本子记下，以后就是我运维入门的证据啊！  机器：戴尔T630塔式服务器 系统：CentOS Linux release 7.3.1611 配置: 2颗E5，32G没存  由于系统已经实现安装好，所以，可以开始撸起袖子就是干啦，第一步，当然是要首先确认一下，硬件是">
+<meta name="twitter:description" content="最近在折腾一台戴尔的服务器，虽然之前已经玩过VPS，但是，这次拿到一台真正的服务器还是非常激动的。于是开始了折腾之旅，搞完之后还赶紧拿个小本子记下，以后就是我运维入门的证据啊！  机器：戴尔T630塔式服务器 系统：CentOS Linux release 7.3.1611 配置: 2颗E5，32G内存由于系统已经提前安装好，所以，可以开始撸起袖子就是干啦，第一步，当然是要首先确认一下，硬件是否正">
 
 
 
@@ -377,161 +377,81 @@
 <ul>
 <li>机器：戴尔T630塔式服务器</li>
 <li>系统：CentOS Linux release 7.3.1611</li>
-<li>配置: 2颗E5，32G没存</li>
+<li>配置: 2颗E5，32G内存<br>由于系统已经提前安装好，所以，可以开始撸起袖子就是干啦，第一步，当然是要首先确认一下，硬件是否正常，有没有缺斤少两。<br>戴尔的服务器一般自带了一个小型的系统来监控整个服务器的硬件情况，叫idrac，它具有很强的独立性，需要通过后面有一个专用的网口进行连接，我把它连到路由器上，DHCP自动分配一个ip，然后，我的笔记本就能在浏览器里面通过这个ip登录管理页面去管理这个idrac系统了，坑爹的是，这个idrac系统是简化版，也就是只能做一些简单的监控，要想使用更加强大的功能貌似要继续购买一百多块钱的license。更坑爹的是这简化版系统连最简单的监控功能都做不好，只检测出了一颗CPU和16G内存，吓得我赶紧联系卖家，结果被上了一课，查看硬件有没有缺斤少两，最好还是拆开来看一下，幸运的是戴尔的机器向来好拆，此外戴尔的BIOS也很好用，因此，戴尔的机器就是为了折腾而生的，随便拆机，随便装系统，正是这点，傻多戴虐我千百遍，我待它如初恋啊。</li>
 </ul>
-<p>由于系统已经实现安装好，所以，可以开始撸起袖子就是干啦，第一步，当然是要首先确认一下，硬件是否正常，有没有缺斤少两。<br>戴尔这服务器自带了一个小型的系统来监控整个服务器的硬件情况，叫idrac，它具有很强的独立性，需要通过后面有一个专用的网口进行连接，我把它连到路由器上，DHCP自动分配一个ip，然后，我的笔记本就能在浏览器里面通过这个ip登录管理页面去管理这个idrac系统了，坑爹的是，这个idrac系统是简化版，也就是只能做一些简单的监控，要想使用更加强大的功能貌似要继续购买一百多块钱的license。更坑爹的是这简化版系统连最简单的监控功能都做不好，只检测出了一颗CPU和16G内存，吓得我赶紧联系卖家，结果被上了一课，查看硬件有没有缺斤少两，最好还是拆开来看一下，幸运的是戴尔的机器向来好拆，此外戴尔的BIOS也很好用，因此，戴尔的机器就是为了折腾而生的，随便拆机，随便装系统，正是这点，傻多戴虐我千百遍，我待它如初恋啊。</p>
 <h2 id="硬件检查"><a href="#硬件检查" class="headerlink" title="硬件检查"></a>硬件检查</h2><p>开机之后第一件事情，还是检查一下硬件，看系统能否识别出所有的硬件了。<br>首先可以通过Linux指令查看硬件详情  </p>
-<h3 id="先看看CPU"><a href="#先看看CPU" class="headerlink" title="先看看CPU"></a>先看看CPU</h3><blockquote>
-<p>more /proc/cpuinfo</p>
-</blockquote>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br></pre></td><td class="code"><pre><span class="line">processor   : 0</span><br><span class="line">vendor_id   : GenuineIntel</span><br><span class="line">cpu family  : 6</span><br><span class="line">model       : 79</span><br><span class="line">model name  : Intel(R) Xeon(R) CPU E5-2630 v4 @ 2.20GHz</span><br><span class="line">stepping    : 1</span><br><span class="line">microcode   : 0xb000021</span><br><span class="line">cpu MHz     : 1200.031</span><br><span class="line">cache size  : 25600 KB</span><br><span class="line">physical id : 0</span><br><span class="line">siblings    : 20</span><br><span class="line">core id     : 0</span><br><span class="line">cpu cores   : 10</span><br><span class="line">apicid      : 0</span><br><span class="line">initial apicid  : 0</span><br><span class="line">fpu     : yes</span><br><span class="line">fpu_exception   : yes</span><br><span class="line">cpuid level : 20</span><br><span class="line">wp      : yes</span><br><span class="line">flags       : fpu vme de pse tsc msr pae mce cx8 apic sep mtrr pge mca cmov </span><br><span class="line">pat pse36 clflush dts acpi mmx fxsr sse sse2 ss ht tm pbe syscall nx pdpe1gb rdt</span><br><span class="line">scp lm constant_tsc arch_perfmon pebs bts rep_good nopl xtopology nonstop_tsc ap</span><br><span class="line">erfmperf eagerfpu pni pclmulqdq dtes64 monitor ds_cpl vmx smx est tm2 ssse3 fma </span><br><span class="line">cx16 xtpr pdcm pcid dca sse4_1 sse4_2 x2apic movbe popcnt tsc_deadline_timer aes xsave avx f16c rdrand lahf_lm abm 3dnowprefetch ida arat epb pln pts dtherm intel_pt tpr_shadow vnmi flexpriority ept vpid fsgsbas</span><br><span class="line">e tsc_adjust bmi1 hle avx2 smep bmi2 erms invpcid rtm cqm rdseed adx smap xsaveopt cqm_llc cqm_occup_llc cqm_mbm_total cqm_mbm_local</span><br><span class="line">bogomips    : 4394.54</span><br><span class="line">clflush size    : 64</span><br><span class="line">cache_alignment : 64</span><br><span class="line">address sizes   : 46 bits physical, 48 bits virtual</span><br><span class="line">power management:</span><br><span class="line"></span><br><span class="line">processor   : 1</span><br><span class="line">vendor_id   : GenuineIntel</span><br><span class="line">cpu family  : 6</span><br><span class="line">model       : 79</span><br><span class="line">model name  : Intel(R) Xeon(R) CPU E5-2630 v4 @ 2.20GHz</span><br><span class="line">stepping    : 1</span><br><span class="line">microcode   : 0xb000021</span><br><span class="line">cpu MHz     : 1199.945</span><br><span class="line">cache size  : 25600 KB</span><br><span class="line">physical id : 1</span><br><span class="line">siblings    : 20</span><br><span class="line">core id     : 0</span><br><span class="line">cpu cores   : 10</span><br><span class="line">apicid      : 32</span><br><span class="line">initial apicid  : 32</span><br><span class="line">fpu     : yes</span><br><span class="line">fpu_exception   : yes</span><br><span class="line">cpuid level : 20</span><br><span class="line">wp      : yes</span><br><span class="line">flags       : fpu vme de pse tsc msr pae mce cx8 apic sep mtrr pge mca cmov pat pse36 clflush dts acpi mmx fxsr sse sse2 ss ht tm pbe syscall nx pdpe1gb rdtscp lm constant_tsc arch_perfmon pebs bts rep_good </span><br><span class="line">nopl xtopology nonstop_tsc aperfmperf eagerfpu pni pclmulqdq dtes64 monitor ds_cpl vmx smx est tm2 ssse3 fma cx16 xtpr pdcm pcid dca sse4_1 sse4_2 x2apic movbe popcnt tsc_deadline_timer aes xsave avx f16c rdrand</span><br><span class="line"> lahf_lm abm 3dnowprefetch ida arat epb pln pts dtherm intel_pt tpr_shadow vnmi flexpriority ept vpid fsgsbase tsc_adjust bmi1 hle avx2 smep bmi2 erms invpcid rtm cqm rdseed adx smap xsaveopt cqm_llc cqm_occup_l</span><br><span class="line">lc cqm_mbm_total cqm_mbm_local</span><br><span class="line">bogomips    : 4399.22</span><br><span class="line">clflush size    : 64</span><br><span class="line">cache_alignment : 64</span><br><span class="line">address sizes   : 46 bits physical, 48 bits virtual</span><br><span class="line">power management:</span><br><span class="line"></span><br><span class="line">processor   : 2</span><br><span class="line">vendor_id   : GenuineIntel</span><br><span class="line">cpu family  : 6</span><br><span class="line">model       : 79</span><br><span class="line">model name  : Intel(R) Xeon(R) CPU E5-2630 v4 @ 2.20GHz</span><br><span class="line">stepping    : 1</span><br><span class="line">microcode   : 0xb000021</span><br><span class="line">cpu MHz     : 1199.945</span><br><span class="line">cache size  : 25600 KB</span><br><span class="line">physical id : 0</span><br><span class="line">...</span><br></pre></td></tr></table></figure>
+<h3 id="先看看CPU"><a href="#先看看CPU" class="headerlink" title="先看看CPU"></a>先看看CPU</h3><p>语句如下<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">more /proc/cpuinfo</span><br></pre></td></tr></table></figure></p>
+<p>结果如下<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br></pre></td><td class="code"><pre><span class="line">processor   : 0</span><br><span class="line">vendor_id   : GenuineIntel</span><br><span class="line">cpu family  : 6</span><br><span class="line">model       : 79</span><br><span class="line">model name  : Intel(R) Xeon(R) CPU E5-2630 v4 @ 2.20GHz</span><br><span class="line">stepping    : 1</span><br><span class="line">microcode   : 0xb000021</span><br><span class="line">cpu MHz     : 1200.031</span><br><span class="line">cache size  : 25600 KB</span><br><span class="line">physical id : 0</span><br><span class="line">siblings    : 20</span><br><span class="line">core id     : 0</span><br><span class="line">cpu cores   : 10</span><br><span class="line">apicid      : 0</span><br><span class="line">initial apicid  : 0</span><br><span class="line">fpu     : yes</span><br><span class="line">fpu_exception   : yes</span><br><span class="line">cpuid level : 20</span><br><span class="line">wp      : yes</span><br><span class="line">flags       : fpu vme de pse tsc msr pae mce cx8 apic sep mtrr pge mca cmov </span><br><span class="line">pat pse36 clflush dts acpi mmx fxsr sse sse2 ss ht tm pbe syscall nx pdpe1gb rdt</span><br><span class="line">scp lm constant_tsc arch_perfmon pebs bts rep_good nopl xtopology nonstop_tsc ap</span><br><span class="line">erfmperf eagerfpu pni pclmulqdq dtes64 monitor ds_cpl vmx smx est tm2 ssse3 fma </span><br><span class="line">cx16 xtpr pdcm pcid dca sse4_1 sse4_2 x2apic movbe popcnt tsc_deadline_timer aes xsave avx f16c rdrand lahf_lm abm 3dnowprefetch ida arat epb pln pts dtherm intel_pt tpr_shadow vnmi flexpriority ept vpid fsgsbas</span><br><span class="line">e tsc_adjust bmi1 hle avx2 smep bmi2 erms invpcid rtm cqm rdseed adx smap xsaveopt cqm_llc cqm_occup_llc cqm_mbm_total cqm_mbm_local</span><br><span class="line">bogomips    : 4394.54</span><br><span class="line">clflush size    : 64</span><br><span class="line">cache_alignment : 64</span><br><span class="line">address sizes   : 46 bits physical, 48 bits virtual</span><br><span class="line">power management:</span><br><span class="line"></span><br><span class="line">processor   : 1</span><br><span class="line">vendor_id   : GenuineIntel</span><br><span class="line">cpu family  : 6</span><br><span class="line">model       : 79</span><br><span class="line">model name  : Intel(R) Xeon(R) CPU E5-2630 v4 @ 2.20GHz</span><br><span class="line">stepping    : 1</span><br><span class="line">microcode   : 0xb000021</span><br><span class="line">cpu MHz     : 1199.945</span><br><span class="line">cache size  : 25600 KB</span><br><span class="line">physical id : 1</span><br><span class="line">siblings    : 20</span><br><span class="line">core id     : 0</span><br><span class="line">cpu cores   : 10</span><br><span class="line">apicid      : 32</span><br><span class="line">initial apicid  : 32</span><br><span class="line">fpu     : yes</span><br><span class="line">fpu_exception   : yes</span><br><span class="line">cpuid level : 20</span><br><span class="line">wp      : yes</span><br><span class="line">flags       : fpu vme de pse tsc msr pae mce cx8 apic sep mtrr pge mca cmov pat pse36 clflush dts acpi mmx fxsr sse sse2 ss ht tm pbe syscall nx pdpe1gb rdtscp lm constant_tsc arch_perfmon pebs bts rep_good </span><br><span class="line">nopl xtopology nonstop_tsc aperfmperf eagerfpu pni pclmulqdq dtes64 monitor ds_cpl vmx smx est tm2 ssse3 fma cx16 xtpr pdcm pcid dca sse4_1 sse4_2 x2apic movbe popcnt tsc_deadline_timer aes xsave avx f16c rdrand</span><br><span class="line"> lahf_lm abm 3dnowprefetch ida arat epb pln pts dtherm intel_pt tpr_shadow vnmi flexpriority ept vpid fsgsbase tsc_adjust bmi1 hle avx2 smep bmi2 erms invpcid rtm cqm rdseed adx smap xsaveopt cqm_llc cqm_occup_l</span><br><span class="line">lc cqm_mbm_total cqm_mbm_local</span><br><span class="line">bogomips    : 4399.22</span><br><span class="line">clflush size    : 64</span><br><span class="line">cache_alignment : 64</span><br><span class="line">address sizes   : 46 bits physical, 48 bits virtual</span><br><span class="line">power management:</span><br><span class="line"></span><br><span class="line">processor   : 2</span><br><span class="line">vendor_id   : GenuineIntel</span><br><span class="line">cpu family  : 6</span><br><span class="line">model       : 79</span><br><span class="line">model name  : Intel(R) Xeon(R) CPU E5-2630 v4 @ 2.20GHz</span><br><span class="line">stepping    : 1</span><br><span class="line">microcode   : 0xb000021</span><br><span class="line">cpu MHz     : 1199.945</span><br><span class="line">cache size  : 25600 KB</span><br><span class="line">physical id : 0</span><br><span class="line">...</span><br></pre></td></tr></table></figure></p>
 <p>上面的展现了三个processor的信息，分别是<br>processor 0<br>…<br>processor 1<br>…<br>processor 2<br>…<br>这些表示的是什么呢？比如我这个服务器有两块E5-2630 v4，上面的信息哪里能体现出来呢？且听我慢慢分析一下几个概念</p>
-<p>####1. 物理CPU<br>也就是插槽上实际的CPU个数，我们可以数上面信息中physical id有几个，发现id要么是0要么是1，也就是说确实有且仅有两块physical CPU</p>
-<p>####2. 逻辑CPU<br>我们知道，当前的CPU基本都是多核心，而且除非你的CPU太老了，否则intel家的CPU一般来说都有超线程技术（HT技术），也就是一个核心可以当两个来使，所以总的逻辑CPU的计算公式是<br>逻辑CPU数 = 物理CPU数 <em> 核心数 </em> 2 (因HT技术加倍)<br>这里我的E5是10核的，所以逻辑CPU数量是<br>2 <em> 10 </em> 2 = 40<br>所以这样的processor编号能从processor 0 一直排到processor 39<br>对于每个processor，他的physical id 0 说明它属于0号物理CPU，如果physical id 1则是属于1号物理CPU</p>
-<p>####3. 核心数<br>你可能要问了，如果想确认我这颗E5是不是真的10核的怎么办？<br>查看cpu cores   : 10 这一行就知道了</p>
+<h4 id="1-物理CPU"><a href="#1-物理CPU" class="headerlink" title="1. 物理CPU"></a>1. 物理CPU</h4><p>也就是插槽上实际的CPU个数，我们可以数上面信息中physical id有几个，发现id要么是0要么是1，也就是说确实有且仅有两块physical CPU</p>
+<h4 id="2-逻辑CPU"><a href="#2-逻辑CPU" class="headerlink" title="2. 逻辑CPU"></a>2. 逻辑CPU</h4><p>我们知道，当前的CPU基本都是多核心，而且除非你的CPU太老了，否则intel家的CPU一般来说都有超线程技术（HT技术），也就是一个核心可以当两个来使，所以总的逻辑CPU的计算公式是<br>逻辑CPU数 = 物理CPU数 * 核心数 * 2 (因HT技术加倍)<br>这里我的E5是10核的，所以逻辑CPU数量是<br>2 * 10 * 2 = 40<br>所以这样的processor编号能从processor 0 一直排到processor 39</p>
+<h4 id="3-核心数"><a href="#3-核心数" class="headerlink" title="3. 核心数"></a>3. 核心数</h4><p>你可能要问了，如果想确认我这颗E5是不是真的10核的怎么办？<br>查看cpu cores   : 10 这一行就知道了</p>
 <h3 id="内存"><a href="#内存" class="headerlink" title="内存"></a>内存</h3><p>这个就很简单了，输入 free -m指令即可  </p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">[dell@localhost ~]$ free -m</span><br><span class="line">              total        used        free      shared  buff/cache   available</span><br><span class="line">Mem:          31896        3529       25599          75        2767       27672</span><br><span class="line">Swap:         16063           0       16063</span><br></pre></td></tr></table></figure>
 <p>从中可以看到，卖家诚不欺我啊</p>
 <h3 id="硬盘"><a href="#硬盘" class="headerlink" title="硬盘"></a>硬盘</h3><p>我们先看看物理磁盘是怎样的<br>最简单粗暴的一条指令是 lsscsi，查看所有通过scsi接口连接的设备，至于啥时scsi，请自行谷歌<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">[dell@localhost ~]$ lsscsi</span><br><span class="line">[0:2:0:0]    disk    DELL     PERC H730 Adp    4.27  /dev/sda </span><br><span class="line">[0:2:1:0]    disk    DELL     PERC H730 Adp    4.27  /dev/sdb </span><br><span class="line">[10:0:0:0]   cd/dvd  PLDS     DVD+-RW DH-16AES DD13  /dev/sr0</span><br></pre></td></tr></table></figure></p>
 <p>我们可以看到有通过SCSI接口连接的三个设备，分别是两个disk，也就是两块硬盘，还有一个光驱。<br>想看更具体一点的信息<br>使用lsblk<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">[dell@localhost ~]$ lsblk</span><br><span class="line">NAME        MAJ:MIN RM  SIZE RO TYPE MOUNTPOINT</span><br><span class="line">sda           8:0    0  100G  0 disk </span><br><span class="line">├─sda1        8:1    0    1G  0 part /boot</span><br><span class="line">└─sda2        8:2    0   99G  0 part </span><br><span class="line">  ├─cl-root 253:0    0   50G  0 lvm  /</span><br><span class="line">  ├─cl-swap 253:1    0 15.7G  0 lvm  [SWAP]</span><br><span class="line">  └─cl-home 253:2    0  5.4T  0 lvm  /home</span><br><span class="line">sdb           8:16   0  5.4T  0 disk </span><br><span class="line">└─sdb1        8:17   0  5.4T  0 part </span><br><span class="line">  └─cl-home 253:2    0  5.4T  0 lvm  /home</span><br><span class="line">sr0          11:0    1 1024M  0 rom</span><br></pre></td></tr></table></figure></p>
-<p>更进一步想看是不是SSD</p>
-<blockquote>
-<p>lsblk -o name,rota</p>
-</blockquote>
+<p>更进一步想看是不是SSD<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">lsblk -o name,rota</span><br></pre></td></tr></table></figure></p>
 <p>列出设备的旋转特性，如果是1则说明是旋转的，那就是机械硬盘</p>
-<p>以上的命令是所有连接在服务器上的设备，不管该磁盘有没有挂载，如果使用df等命令则只能看到挂载好的硬盘的信息。</p>
-<blockquote>
-<p>df -lh</p>
-</blockquote>
-<p>为了方便管理和分配储存空间，linux有一种叫device mapper的机制可以设置逻辑设备和物理设备的映射关系，这样的好处比如你有三块硬盘，那你可以组成一个逻辑设备，也就是当成一个盘来用，或者可以让映射实现raid功能，反正就是很强大就是了，听说用过都说好，但是，我感觉实在为难我们这些菜鸟。</p>
+<p>以上的命令是所有连接在服务器上的设备，不管该磁盘有没有挂载，如果使用df等命令则只能看到挂载好的硬盘的信息。于是一般也可以通过下面的指令查看磁盘使用情况。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">df -lh</span><br></pre></td></tr></table></figure></p>
+<p>如果要查看分区情况，可以使用<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">fdisk</span><br></pre></td></tr></table></figure></p>
+<p>为了方便管理和分配储存空间，linux有一种叫device mapper的机制可以设置逻辑设备和物理设备的映射关系，这样的好处比如你有三块硬盘，那你可以组成一个逻辑设备，也就是当成一个盘来用，或者可以让映射实现raid功能，反正就是很强大就是了，我粗略看了一下相关的文档，设计确实很精妙，听说用过都说好，但是，我感觉这个东西实在为难我们这些菜鸟。</p>
 <h2 id="网络配置"><a href="#网络配置" class="headerlink" title="网络配置"></a>网络配置</h2><p>服务器有两个网口，我决定使用一个网口作为网络服务，让内网的计算机都能访问该服务器，另一个端口则连接外网让服务器联网使用。 </p>
 <p>所以第一个网口接的是交换机，分配了一个校级的ip地址，为10.23.45.123（已做匿名处理），<br>所以在网口一的配置如下<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">ip 10.23.45.123</span><br><span class="line">网关 10.23.45.1</span><br><span class="line">掩码 255.255.255.0</span><br><span class="line">DNS 10.10.0.21 (根据您自己的DNS服务器自行设置哦，没有的话，留空)</span><br></pre></td></tr></table></figure></p>
 <p>这个学校的的子网为A型网络，即 10.0.0.0/8 类型的，我所处在网关则是10.23.45.1 已经是好几级一下的子网了。不过不影响其他的地址对服务器的访问，比如 ip为 10.45.—.— 的同学也可以访问我的服务器。</p>
 <p>服务器网口2连接的是一个能够上网的路由器，直接设置为DHCP就可以了。根据DHCP分配的地址是192.168.0.145  </p>
 <p>所以，服务器要设计的静态路由表需要有两行<br>大概是这样<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Destination     Gateway         Genmask         Flags   MSS Window  irtt Iface</span><br><span class="line">0.0.0.0         192.168.0.1     0.0.0.0         UG        0 0          0 em2</span><br><span class="line">10.0.0.0        10.23.45.1      255.0.0.0       UG        0 0          0 em1</span><br></pre></td></tr></table></figure></p>
 <p>以上的路由表什么意思呢，其实也很好理解。<br>解默认情况下，也就是目的地destination 是0.0.0.0，掩码也是0.0.0.0的情况下走 192.168.0.1的网关，也就是我上网啥的就是通过网口2<br>但是如果是10.开头的ip网段的话，就使用网口1，也就是校内同学访问服务器所通过的网口是网口1</p>
-<p>设置也很简单，首先使用netstat -rn命令查看一下路由表，<br>然后利用下面的语句先把目前所有的路由表删除干净</p>
-<blockquote>
-<p>route del -net 已有的Destination netmask 已有的掩码</p>
-</blockquote>
-<p>比如要删掉路由表中这样一行</p>
-<blockquote>
-<p>10.0.0.0        10.23.45.1      255.0.0.0       UG        0 0          0 em1</p>
-</blockquote>
-<p>只要</p>
-<blockquote>
-<p>route del -net 10.0.0.0 netmask 255.0.0.0</p>
-</blockquote>
-<p>总之，先把原有的路由表一行一行删除干净。<br>然后我们手动加上两行路由表配置就好了</p>
-<blockquote>
-<p>route add -net 0.0.0.0 netmask 0.0.0.0 gw 192.168.0.1<br>route add -net 10.0.0.0 netmask 255.0.0.0 gw 10.23.45.1</p>
-</blockquote>
+<p>设置也很简单，首先使用netstat -rn命令查看一下路由表，<br>然后利用下面的语句先把目前所有的路由表删除干净<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">route del -net 已有的Destination netmask 已有的掩码</span><br></pre></td></tr></table></figure></p>
+<p>比如要删掉路由表中这样一行<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">10.0.0.0         10.23.45.1      255.0.0.0       UG        0 0          0 em1</span><br></pre></td></tr></table></figure></p>
+<p>只要<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">route  del  -net  10.0.0.0  netmask  255.0.0.0</span><br></pre></td></tr></table></figure></p>
+<p>总之，先把原有的路由表一行一行删除干净。<br>然后我们手动加上两行路由表配置就好了<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">route  add  -net  0.0.0.0  netmask  0.0.0.0  gw  192.168.0.1</span><br><span class="line">route  add  -net  10.0.0.0  netmask  255.0.0.0  gw  10.23.45.1</span><br></pre></td></tr></table></figure></p>
 <h2 id="远程登录服务器"><a href="#远程登录服务器" class="headerlink" title="远程登录服务器"></a>远程登录服务器</h2><p>服务器平时还是很静默的，就是启动和跑大型代码的时候风扇火力全开，那感觉就像开飞机一样。所以，服务器打死不能放在自己所在的实验室房间！所以我们需要用一些远程工具，而不是一直呆在机房里面。</p>
 <h3 id="SSH-secure-shell"><a href="#SSH-secure-shell" class="headerlink" title="SSH (secure shell)"></a>SSH (secure shell)</h3><p>我们知道凡是涉及到远程连接，基本都是需要极高的安全性，否则计算机很容易被别人操控。SSH 是目前较可靠，专为远程登录会话和其他网络服务提供安全性的协议。利用 SSH 协议可以有效防止远程管理过程中的信息泄露问题。</p>
 <p>一般来说，服务器已经装好了ssh服务，我们需要在办公室的电脑上装客户端就可以通过客户端远程访问机房里面的服务器了。</p>
 <p>我使用的ssh客户端软件是bitvise client，主要是除了有ssh连接之外还开启了SFTP服务，方便传输文件，仅靠ssh指令传输文件实在是太麻烦了。该软件真的是5星好评，强烈推荐！这里就不上教材了，随便折腾一下输入用户名和密码就可以连接了。</p>
-<h2 id="http服务搭建"><a href="#http服务搭建" class="headerlink" title="http服务搭建"></a>http服务搭建</h2><p>第一步当然是nginx啊，因为之后是要做网站的嘛。<br>首先要添加Nginx 的 Yum 库</p>
-<blockquote>
-<p>sudo rpm -Uvh <a href="http://nginx.org/packages/centos/7/noarch/RPMS/nginx-release-centos-7-0.el7.ngx.noarch.rpm" target="_blank" rel="noopener">http://nginx.org/packages/centos/7/noarch/RPMS/nginx-release-centos-7-0.el7.ngx.noarch.rpm</a></p>
-</blockquote>
-<p>接下来才是安装Nginx</p>
-<blockquote>
-<p>sudo yum install nginx</p>
-</blockquote>
-<p>启动服务</p>
-<blockquote>
-<p>sudo systemctl start nginx.service</p>
-</blockquote>
+<h2 id="http服务搭建"><a href="#http服务搭建" class="headerlink" title="http服务搭建"></a>http服务搭建</h2><p>第一步当然是nginx啊，因为之后是要做网站的嘛。<br>首先要添加Nginx 的 Yum 库<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo rpm -Uvh http://nginx.org/packages/centos/7/noarch/RPMS/nginx-release-centos-7-0.el7.ngx.noarch.rpm</span><br></pre></td></tr></table></figure></p>
+<p>接下来才是安装Nginx<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo yum install nginx</span><br></pre></td></tr></table></figure></p>
+<p>启动服务<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo systemctl start nginx.service</span><br></pre></td></tr></table></figure></p>
 <p>这时候就可以在学校任何地方访问网站了。没错，看到的就是Nginx那个欢迎界面，如果出什么问题，很有可能是防火墙屏蔽了80端口</p>
-<p>我们可以使用</p>
-<blockquote>
-<p>firewall-cmd –permanent –zone=public –list-ports</p>
-</blockquote>
+<p>我们可以使用<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">firewall-cmd --permanent --zone=public --list-ports</span><br></pre></td></tr></table></figure></p>
 <p>来查看一下当前开放的端口有哪些</p>
-<p>如果80端口没开，就需要用下面的指令打开端口</p>
-<blockquote>
-<p>firewall-cmd –permanent –zone=public –add-port=80/tcp</p>
-</blockquote>
+<p>如果80端口没开，就需要用下面的指令打开端口<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">firewall-cmd --permanent --zone=public --add-port=80/tcp</span><br></pre></td></tr></table></figure></p>
 <p>当然，如果你所在的网络屏蔽了80端口的话，我建议你换一个端口</p>
-<p>然后重启一下防火墙</p>
-<blockquote>
-<p>firewall-cmd –reload</p>
-</blockquote>
+<p>然后重启一下防火墙<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">firewall-cmd --reload</span><br></pre></td></tr></table></figure></p>
 <p>如果你对nginx默认的网页路径不满意，你可以自己设置nginx的配置，这里我使用nano编辑工具，唉，不会用vim木有办法</p>
-<blockquote>
-<p>nano /etc/nginx/conf.d/default.conf</p>
-</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">nano /etc/nginx/conf.d/default.conf</span><br></pre></td></tr></table></figure>
 <p>然后在location 里面把root后面的路径修改为我们自己选定的工作区<br>比如我这里改成 /usr/html</p>
-<h2 id="网站部署"><a href="#网站部署" class="headerlink" title="网站部署"></a>网站部署</h2><p>接下来，我们就要把我们的网站往服务器上面部署了，我是这样部署的，为了方便起见，我打算使用git的方式来部署，这样，我在笔记本上写好代码，弄好网站，通过git push一条指令就传到服务器上，效率妥妥的。<br>那我们就直接在/usr/html目录下搞一个git仓库？非也！那样太危险了，把git的文件也暴露在了能被自由访问的路径之下了。<br>这时候就需要git hook排上场了，这玩意有个好处就是能够监测git的提交状态，然后运行相关指令。这样就能实现git和工作区的分离。<br>工作原理很简单，我们首先在服务器的一个工作目录下，比如我就选了/home/dell作为工作目录，然后，我们新建一个“裸”的git库。</p>
-<blockquote>
-<p>git init –bare website.git</p>
-</blockquote>
+<h2 id="网站部署"><a href="#网站部署" class="headerlink" title="网站部署"></a>网站部署</h2><p>接下来，我们就要把我们的网站往服务器上面部署了，我是这样部署的，为了方便起见，我打算使用git的方式来部署，这样，我在笔记本上写好代码，弄好网站，通过git push一条指令就传到服务器上，效率妥妥的。<br>那我们就直接在/usr/html目录下搞一个git仓库？非也！那样太危险了，把git的文件也暴露在了能被自由访问的路径之下了。<br>这时候就需要git hook排上场了，这玩意有个好处就是能够监测git的提交状态，然后运行相关指令。这样就能实现git和工作区的分离。<br>工作原理很简单，我们首先在服务器的一个工作目录下，比如我就选了/home/dell作为工作目录，然后，我们新建一个“裸”的git库。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git init --bare website.git</span><br></pre></td></tr></table></figure></p>
 <p>这样新建的website.git路径就是一个“裸”库，裸库和平常的库有什么区别呢，裸库就是没有工作区的库，也就是我们的网站代码并不放在这里面（因为我们之前说了，我放在/usr/html路径下），我们进入这个裸库的hook路径下</p>
-<blockquote>
-<p>cd website.git/hook</p>
-</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cd website.git/hook</span><br></pre></td></tr></table></figure>
 <p>我们新建一个 post-receive 文件，</p>
-<blockquote>
-<p>nano post-receive</p>
-</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">nano post-receive</span><br></pre></td></tr></table></figure>
 <p>然后在里面写下如下的语句</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">#!/bin/sh</span><br><span class="line">git --work-tree=/usr/html --git-dir=/path/to/website.git checkout -f</span><br></pre></td></tr></table></figure>
-<p>post-receive的意思是每次远程提交之后，运行里面的脚本，而脚本的意思是，设置工作区，把工作区的内容进行更新。总结一下，就是你在自己的办公电脑上修改代码后，使用<br>git push提交到服务器上的git库，而提交完后，post-receive就会自动运行脚本，把你提交的修改放到真正的工作区去，也就是放到/usr/html。</p>
-<p>这里注意一下，我们要让post-receive可以执行，因此</p>
-<blockquote>
-<p>chmod +x post-receive</p>
-</blockquote>
+<p>post-receive的意思是每次远程提交之后，运行里面的脚本，而上面两条脚本指令的意思是，设置工作区，把工作区的内容进行更新。总结一下，就是你在自己的办公电脑上修改代码后，使用<br>git push提交到服务器上的git库，而提交完后，post-receive就会自动运行脚本，把你提交的修改放到真正的工作区去，也就是放到/usr/html。<br>顺便说一下，我们可以看到hook路径下有一些pre-push等脚本，顾名思义，就是push之前要做运行的脚本放在里面</p>
+<p>这里注意一下，我们要让post-receive可以执行，因此<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">chmod +x post-receive</span><br></pre></td></tr></table></figure></p>
 <p>接下来，我们设置服务器的ssh，比如我希望能够以dell的用户向服务器提交网站代码和文件，为方便起见，我们通过ssh的免密传输，也就是每次连接不需要输入密码，因此要配置rsa文件。</p>
-<p>通过以下的指令生成rsa钥匙对</p>
-<blockquote>
-<p>ssh-keygen -t rsa</p>
-</blockquote>
+<p>通过以下的指令生成rsa钥匙对<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ssh-keygen -t rsa</span><br></pre></td></tr></table></figure></p>
 <p>这就在我们的 /home/dell 路径下生成了一个 .ssh 路径。</p>
-<p>然后，我们需要在办公室的计算机里面设置相关的git配置，以达到一键部署的目的。办公室用的是windows10 因此到git的官网下载git软件，进行安装，此软件内置了ssh。<br>我们在F盘根目录放置我们的网页的代码。于是，新建html文件夹，我们的网页的代码，图片等文件就全部放在这里面了。在该文件夹里面，右键选择Git bash 我们使用如下的语句</p>
-<blockquote>
-<p>git init</p>
-</blockquote>
+<p>然后，我们需要在办公室的计算机里面设置相关的git配置，以达到一键部署的目的。办公室用的是windows10 因此到git的官网下载git软件，进行安装，此软件内置了ssh。<br>我们在F盘根目录放置我们的网页的代码。于是，新建html文件夹，我们的网页的代码，图片等文件就全部放在这里面了。在该文件夹里面，右键选择Git bash 我们使用如下的语句<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git init</span><br></pre></td></tr></table></figure></p>
 <p>将该目录初始化为一个git仓库，为了能够使用git push进行文件提交，我们首先要设置ssh，因为git就是通过ssh进行文件传输的。</p>
-<p>由于，我们的办公电脑也要配置rsa钥匙对。首先，我们在这个Bash里面输入</p>
-<blockquote>
-<p>ssh-keygen -t rsa</p>
-</blockquote>
-<p>这时就会在你的计算机的</p>
-<blockquote>
-<p>C:/Users/yourname/.ssh</p>
-</blockquote>
+<p>由于，我们的办公电脑也要配置rsa钥匙对。首先，我们在这个Bash里面输入<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ssh-keygen -t rsa</span><br></pre></td></tr></table></figure></p>
+<p>这时就会在你的计算机的<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">C:/Users/yourname/.ssh</span><br></pre></td></tr></table></figure></p>
 <p>目录下生成了两个文件，一个是rsa加密的私钥id_rsa，一个是公钥id_rsa.pub。<br>其中私钥非常重要千万要保管好，公钥的话就无所谓了。<br>我们把公钥里面的内容复制一下。</p>
-<p>然后我们通过bitvise连接。<br>在服务器的 /home/dell/.ssh 目录下新建一个<br>authorized_keys文件<br>可以通过nano语句进行新建</p>
-<blockquote>
-<p>nano authorized_keys</p>
-</blockquote>
-<p>然后把办公室的电脑的公钥里面的内容复制到这个文件里面。</p>
-<p>重启一下服务器的sshd服务</p>
-<blockquote>
-<p>service sshd restart</p>
-</blockquote>
-<p>这时候，我们在办公室的电脑的html文件夹里面写代码，设计网页。做完之后使用</p>
-<blockquote>
-<p>git add .<br>git commit -m “完成第一次修改”<br>git remote add origin dell@10.23.45.123:/home/dell/website.git<br>git push -u origin master</p>
-</blockquote>
+<p>然后我们通过bitvise连接。<br>在服务器的 /home/dell/.ssh 目录下新建一个<br>authorized_keys文件<br>可以通过nano语句进行新建<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">nano authorized_keys</span><br></pre></td></tr></table></figure></p>
+<p>然后把办公室的电脑的公钥里面的内容复制到这个文件里面。<br>原理也很简单，我们把办公室的公钥放到服务器的authorized_keys里面，那么我用办公室电脑向服务器传输文件的时候，办公室电脑就会拿着私钥去服务器的authorized_keys里面配对，配上了，那么服务器就认可了办公室电脑的身份，让它往服务器传文件。</p>
+<p>重启一下服务器的sshd服务<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">service sshd restart</span><br></pre></td></tr></table></figure></p>
+<p>这时候，我们在办公室的电脑的html文件夹里面写代码，设计网页。做完之后使用<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">git add .</span><br><span class="line">git commit -m &quot;完成第一次修改&quot;</span><br><span class="line">git remote add origin dell@10.23.45.123:/home/dell/website.git</span><br><span class="line">git push -u origin master</span><br></pre></td></tr></table></figure></p>
 <p>这样就能把代码同步到服务器上，然后在git hook的post-receive脚本的作用下，放到工作区里面。</p>
-<p>第一次提交远程库之后，以后的修改就简单了</p>
-<blockquote>
-<p>git add .<br>git commit -m “完成第n次修改”<br>git push</p>
-</blockquote>
+<p>第一次提交远程库之后，以后的修改就简单了<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">git add .</span><br><span class="line">git commit -m &quot;完成第n次修改&quot;</span><br><span class="line">git push</span><br></pre></td></tr></table></figure></p>
 <h2 id="远程图形界面"><a href="#远程图形界面" class="headerlink" title="远程图形界面"></a>远程图形界面</h2><p>一切搞得差不多，接下来由于不少其他的同学也想要远程登录，他们不太愿意都是命令行的ssh工具，想要有图形界面，我们可以安装xrdp远程服务。</p>
-<p>首先安装epel库，因为centOS7 默认库不带xrdp</p>
-<blockquote>
-<p>yum install epel-release</p>
-</blockquote>
-<p>然后安装xrdp</p>
-<blockquote>
-<p>yum install xrdp</p>
-</blockquote>
+<p>首先安装epel库，因为centOS7 默认库不带xrdp<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yum install epel-release</span><br></pre></td></tr></table></figure></p>
+<p>然后安装xrdp<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yum install xrdp</span><br></pre></td></tr></table></figure></p>
 <p>然后就可以了。不知为何网上的教程都说要继续安装tigervnc-server<br>我查了一下yum 列表好像已经自动安装进去了。</p>
 <p>所以，我们直接在办公室的电脑使用自带的远程工具就可以了。</p>
 <p>整个的部署的任务就完成了。</p>
-<p>总的来说，这次的捣鼓服务器学习了不少东西</p>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>做运维不简单，这些还都是技术问题，都需要慢慢去查资料，慢慢解决一个个问题。非技术问题，还包括，向学校申请域名，跟各种部门打交道，要盖各种章，各种跑断腿。这才是最无趣的地方。</p>
 <p><section id="isso-thread"></section></p>
 <script data-isso="http://zju.xyz/isso/" src="http://zju.xyz/isso/js/embed.min.js"></script>
       
@@ -713,7 +633,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#硬件检查"><span class="nav-number">1.</span> <span class="nav-text">硬件检查</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#先看看CPU"><span class="nav-number">1.1.</span> <span class="nav-text">先看看CPU</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#内存"><span class="nav-number">1.2.</span> <span class="nav-text">内存</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#硬盘"><span class="nav-number">1.3.</span> <span class="nav-text">硬盘</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#网络配置"><span class="nav-number">2.</span> <span class="nav-text">网络配置</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#远程登录服务器"><span class="nav-number">3.</span> <span class="nav-text">远程登录服务器</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#SSH-secure-shell"><span class="nav-number">3.1.</span> <span class="nav-text">SSH (secure shell)</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#http服务搭建"><span class="nav-number">4.</span> <span class="nav-text">http服务搭建</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#网站部署"><span class="nav-number">5.</span> <span class="nav-text">网站部署</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#远程图形界面"><span class="nav-number">6.</span> <span class="nav-text">远程图形界面</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#硬件检查"><span class="nav-number">1.</span> <span class="nav-text">硬件检查</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#先看看CPU"><span class="nav-number">1.1.</span> <span class="nav-text">先看看CPU</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-物理CPU"><span class="nav-number">1.1.1.</span> <span class="nav-text">1. 物理CPU</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-逻辑CPU"><span class="nav-number">1.1.2.</span> <span class="nav-text">2. 逻辑CPU</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-核心数"><span class="nav-number">1.1.3.</span> <span class="nav-text">3. 核心数</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#内存"><span class="nav-number">1.2.</span> <span class="nav-text">内存</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#硬盘"><span class="nav-number">1.3.</span> <span class="nav-text">硬盘</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#网络配置"><span class="nav-number">2.</span> <span class="nav-text">网络配置</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#远程登录服务器"><span class="nav-number">3.</span> <span class="nav-text">远程登录服务器</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#SSH-secure-shell"><span class="nav-number">3.1.</span> <span class="nav-text">SSH (secure shell)</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#http服务搭建"><span class="nav-number">4.</span> <span class="nav-text">http服务搭建</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#网站部署"><span class="nav-number">5.</span> <span class="nav-text">网站部署</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#远程图形界面"><span class="nav-number">6.</span> <span class="nav-text">远程图形界面</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#总结"><span class="nav-number">7.</span> <span class="nav-text">总结</span></a></li></ol></div>
             
 
           </div>
